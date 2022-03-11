@@ -1,0 +1,5 @@
+#files
+# .eslintrc.js
+#directories
+.sass-cache/
+node_modules/
