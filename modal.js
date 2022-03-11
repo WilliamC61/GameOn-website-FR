@@ -104,8 +104,8 @@ function playedTournamentNumberValidation() {
 function locationValidation() {
     const errorMessageElement = document.querySelector(".--input-location");
     const locationButtonTable = document.getElementsByClassName("subscription_form_input-radio");
-    for (let i = 0; i < locationButtonTable.length; i++) {
-        if (locationButtonTable[i].checked) {
+    for (const locationButton of locationButtonTable) {
+        if (locationButton.checked) {
             errorMessageElement.textContent = "";
             return 0;
         }
