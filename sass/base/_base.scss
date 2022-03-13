@@ -14,4 +14,9 @@ html {
 body {
     box-sizing: border-box;
     background: $color-white;
+    @include mobile() {
+        max-width: 354px;
+        margin: auto;
+    }
+    
 }
