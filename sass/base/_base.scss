@@ -19,5 +19,10 @@ body {
         max-width: 354px;
         margin: auto;
     }
+    @include tablet() {
+        //min-width: 354px;
+        max-width: 650px;
+        margin: auto;
+    }
     
 }

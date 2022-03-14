@@ -19,6 +19,13 @@
         margin-right: 100px;
         align-items: flex-end;
     }  
+    @include laptop () {
+        height: 10rem;
+        padding-top: 5rem;
+        margin-left: 100px;
+        margin-right: 100px;
+        align-items: flex-end;
+    }
     @include mobile() {
         height: 8rem;
         padding-top: 3rem;
@@ -27,7 +34,9 @@
     &_logo {
         @include desktop() {
             height: 5rem;
-            flex-shrink: 2;
+        }
+        @include laptop() {
+            height: 5rem;
         }
         @include mobile() {
             height: 2rem;
@@ -35,78 +44,14 @@
         }    
     }
     &_top-nav {
-        flex-shrink: 1;
         @include desktop() {
-            &_burger-menu-button{
-                display:none;
-            }
-            &_ul {
-                list-style: none;
-                display: inline-block;
-                vertical-align: bottom;
-                &_li {
-                    display: inline-block;
-                    &_a {
-                        display: block;
-                        text-decoration: none;
-                        font-size: 1.8rem;
-                        font-weight: 500;
-                        padding: 9px 14px 9px 12px;
-                        background-color: $color-white;
-                        border-radius: 0.8rem;
-                        &:visited, &:link {
-                            color: $color-black;               
-                        }
-                        &:hover, &:active, &:focus {
-                            background-color: $color-red;
-                            color: $color-white;
-                            text-decoration: underline $color-white;
-                        }
-                    }
-                }
-            }
+            @include one-line-menu();
         }
-        @include mobile(){
-            &_burger-menu-button {
-                color: $color-red;
-                background-color: $color-white;
-                border: none;
-                padding-right: 2px;
-                font-size: 2rem;
-                display: inline-block;
-                &:hover {
-                    cursor: pointer;
-                }
-            }
-            &_ul {
-                list-style: none;
-                font-size: 1.4rem;
-                position: absolute;
-                top: 0;
-                right: 0;
-                display: inline-block;
-                visibility: hidden;
-                &_li {
-                    display: block;
-                    &_a {
-                        display: block;
-                        text-decoration: none;
-                        font-size: 1.4rem;
-                        font-weight: 500;
-                        padding: 4px 8px 4px 8px;
-                        background-color: $color-white;
-                        border-radius: 0.8rem;
-                        &:visited, &:link {
-                            color: $color-black;               
-                        }
-                        &:hover, &:active, &:focus {
-                            background-color: $color-red;
-                            color: $color-white;
-                            text-decoration: underline $color-white;
-                        }
-                    }
-                }
-            }
+        @include laptop() {
+            @include burger-menu();
+        }
+        @include mobile() {
+           @include burger-menu();
         }
     }
 }

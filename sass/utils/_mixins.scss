@@ -1,4 +1,82 @@
+@mixin one-line-menu {
+    &_burger-menu-button{
+        display:none;
+    }
+    &_ul {
+        list-style: none;
+        display: inline-block;
+        vertical-align: bottom;
+        &_li {
+            display: inline-block;
+            &_a {
+                display: block;
+                text-decoration: none;
+                font-size: 1.8rem;
+                font-weight: 500;
+                padding: 9px 14px 9px 12px;
+                background-color: $color-white;
+                border-radius: 0.8rem;
+                &:visited, &:link {
+                    color: $color-black;               
+                }
+                &:hover, &:active, &:focus {
+                    background-color: $color-red;
+                    color: $color-white;
+                    text-decoration: underline $color-white;
+                }
+            }
+        }
+    }
+}
 
+@mixin burger-menu {
+    &_burger-menu-button {
+        color: $color-red;
+        background-color: $color-white;
+        border: none;
+        padding-right: 2px;
+        font-size: 2rem;
+        display: inline-block;
+        &:hover {
+            cursor: pointer;
+        }
+    }
+    &_burger-menu {
+        background-color: $color-white;
+        padding: 10px;
+        position: absolute;
+        top: 6rem;
+        right: 0;
+        border: 2px solid $color-grey;
+        border-radius: 8px;
+        visibility: hidden;
+    }
+    &_ul {
+        list-style: none;
+        font-size: 1.4rem;
+        display: inline-block;
+        &_li {
+            display: block;
+            &_a {
+                display: block;
+                text-decoration: none;
+                font-size: 1.4rem;
+                font-weight: 500;
+                padding: 4px 8px 4px 8px;
+                background-color: $color-white;
+                border-radius: 0.8rem;
+                &:visited, &:link {
+                    color: $color-black;               
+                }
+                &:hover, &:active, &:focus {
+                    background-color: $color-red;
+                    color: $color-white;
+                    text-decoration: underline $color-white;
+                }
+            }
+        }
+    }    
+}
 
 //================================================================================
 /*              REsponsive categories vs breakpoints                            *
@@ -11,24 +89,29 @@
         @content;
     }   
 }
-// @mixin small-tablet {
-//     @media screen and (min-width: $mobile-breakpoint) and (max-width: ($tablet-breakpoint - 1)) {
-//         @content;
-//     }   
-// }
-// @mixin tablet {
-//     @media screen and (min-width: $tablet-breakpoint) and (max-width: ($laptop-breakpoint - 1)) {
-//         @content;
-//     }   
-// }
-// @mixin laptop {
-//     @media  screen and (min-width: $laptop-breakpoint) and (max-width: ($desktop-breakpoint - 1)) {
-//         @content;
-//     }
-// }
+@mixin small-tablet {
+    @media screen and (min-width: $mobile-breakpoint) and (max-width: ($tablet-breakpoint - 1)) {
+        @content;
+    }   
+}
+@mixin tablet {
+    @media screen and (min-width: $tablet-breakpoint) and (max-width: ($laptop-breakpoint - 1)) {
+        @content;
+    }   
+}
+@mixin laptop {
+    @media  screen and (min-width: $laptop-breakpoint) and (max-width: ($desktop-breakpoint - 1)) {
+        @content;
+    }
+}
 @mixin desktop {
     @media  (min-width: $desktop-breakpoint) {
         @content;
     }
 }
 
+@mixin desktop-or-laptop{
+    @media  screen and (min-width: $laptop-breakpoint) {
+        @content;
+    }
+}

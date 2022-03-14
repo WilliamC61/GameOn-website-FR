@@ -39,6 +39,13 @@ body {
   }
 }
 
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  body {
+    max-width: 650px;
+    margin: auto;
+  }
+}
+
 body {
   font-family: 'DM Sans', sans-serif;
   color: #232323;
@@ -110,6 +117,18 @@ p {
   }
 }
 
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+  .header {
+    height: 10rem;
+    padding-top: 5rem;
+    margin-left: 100px;
+    margin-right: 100px;
+    -webkit-box-align: end;
+        -ms-flex-align: end;
+            align-items: flex-end;
+  }
+}
+
 @media screen and (max-width: 991px) {
   .header {
     height: 8rem;
@@ -121,8 +140,12 @@ p {
 @media (min-width: 1200px) {
   .header_logo {
     height: 5rem;
-    -ms-flex-negative: 2;
-        flex-shrink: 2;
+  }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+  .header_logo {
+    height: 5rem;
   }
 }
 
@@ -131,11 +154,6 @@ p {
     height: 2rem;
     position: relative;
   }
-}
-
-.header_top-nav {
-  -ms-flex-negative: 1;
-      flex-shrink: 1;
 }
 
 @media (min-width: 1200px) {
@@ -170,7 +188,7 @@ p {
   }
 }
 
-@media screen and (max-width: 991px) {
+@media screen and (min-width: 992px) and (max-width: 1199px) {
   .header_top-nav_burger-menu-button {
     color: #FE142F;
     background-color: #FFFFFF;
@@ -182,14 +200,20 @@ p {
   .header_top-nav_burger-menu-button:hover {
     cursor: pointer;
   }
+  .header_top-nav_burger-menu {
+    background-color: #FFFFFF;
+    padding: 10px;
+    position: absolute;
+    top: 6rem;
+    right: 0;
+    border: 2px solid #C4C4C4;
+    border-radius: 8px;
+    visibility: hidden;
+  }
   .header_top-nav_ul {
     list-style: none;
     font-size: 1.4rem;
-    position: absolute;
-    top: 0;
-    right: 0;
     display: inline-block;
-    visibility: hidden;
   }
   .header_top-nav_ul_li {
     display: block;
@@ -214,13 +238,68 @@ p {
   }
 }
 
-@media (min-width: 1200px) {
+@media screen and (max-width: 991px) {
+  .header_top-nav_burger-menu-button {
+    color: #FE142F;
+    background-color: #FFFFFF;
+    border: none;
+    padding-right: 2px;
+    font-size: 2rem;
+    display: inline-block;
+  }
+  .header_top-nav_burger-menu-button:hover {
+    cursor: pointer;
+  }
+  .header_top-nav_burger-menu {
+    background-color: #FFFFFF;
+    padding: 10px;
+    position: absolute;
+    top: 6rem;
+    right: 0;
+    border: 2px solid #C4C4C4;
+    border-radius: 8px;
+    visibility: hidden;
+  }
+  .header_top-nav_ul {
+    list-style: none;
+    font-size: 1.4rem;
+    display: inline-block;
+  }
+  .header_top-nav_ul_li {
+    display: block;
+  }
+  .header_top-nav_ul_li_a {
+    display: block;
+    text-decoration: none;
+    font-size: 1.4rem;
+    font-weight: 500;
+    padding: 4px 8px 4px 8px;
+    background-color: #FFFFFF;
+    border-radius: 0.8rem;
+  }
+  .header_top-nav_ul_li_a:visited, .header_top-nav_ul_li_a:link {
+    color: #232323;
+  }
+  .header_top-nav_ul_li_a:hover, .header_top-nav_ul_li_a:active, .header_top-nav_ul_li_a:focus {
+    background-color: #FE142F;
+    color: #FFFFFF;
+    -webkit-text-decoration: underline #FFFFFF;
+            text-decoration: underline #FFFFFF;
+  }
+}
+
+.footer {
+  color: #FE142F;
+}
+
+@media screen and (min-width: 992px) {
   .footer {
     margin-top: 9rem;
     margin-left: 4rem;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
   }
   .footer_copyright {
-    color: #FE142F;
     font-size: 1.5rem;
     font-family: 'Roboto', sans-serif;
     font-weight: 500;
@@ -230,13 +309,11 @@ p {
 @media screen and (max-width: 991px) {
   .footer {
     margin-top: 3.6rem;
-    margin-left: 4rem;
   }
   .footer_copyright {
-    color: #FE142F;
+    width: 100%;
+    text-align: center;
     font-size: 1rem;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 500;
   }
 }
 
@@ -246,6 +323,21 @@ p {
 @import "./layout/form";
 */
 @media (min-width: 1200px) {
+  .pitch {
+    margin-top: 8.5rem;
+    margin-left: 100px;
+    margin-right: 100px;
+    border-radius: 8px;
+    height: 66rem;
+    background-color: #232323;
+    overflow: hidden;
+    -webkit-box-shadow: 0px 12px 12px rgba(0, 0, 0, 0.25);
+            box-shadow: 0px 12px 12px rgba(0, 0, 0, 0.25);
+    position: relative;
+  }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1199px) {
   .pitch {
     margin-top: 8.5rem;
     margin-left: 100px;
@@ -283,6 +375,20 @@ p {
   }
 }
 
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+  .title {
+    padding-top: 5rem;
+    margin-left: 56px;
+    width: 664px;
+    position: relative;
+    z-index: 1;
+    line-height: 10rem;
+    font-size: 7.68rem;
+    font-weight: 500;
+    color: #FFFFFF;
+  }
+}
+
 @media screen and (max-width: 991px) {
   .title {
     line-height: 5.0rem;
@@ -305,6 +411,19 @@ p {
   }
 }
 
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+  .subtitle {
+    margin-top: 7rem;
+    margin-left: 56px;
+    width: 425px;
+    position: relative;
+    z-index: 1;
+    color: #FFFFFF;
+    font-size: 2.4rem;
+    font-weight: 400;
+  }
+}
+
 @media screen and (max-width: 991px) {
   .subtitle {
     margin-top: 1.7rem;
@@ -314,7 +433,7 @@ p {
   }
 }
 
-@media (min-width: 1200px) {
+@media screen and (min-width: 992px) {
   .background-picture {
     height: 66rem;
     position: absolute;
@@ -353,13 +472,27 @@ p {
   font-style: normal;
 }
 
-@media (min-width: 1200px) {
+@media screen and (min-width: 992px) {
   .subscription-launch_button {
     margin-top: 7rem;
     margin-left: 56px;
     padding: 11px 30px 11px 30px;
     display: inline-block;
     font-size: 2.5rem;
+    position: relative;
+    z-index: 1;
+  }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+  .subscription-launch_button {
+    margin-top: 7rem;
+    margin-left: 56px;
+    padding: 11px 30px 11px 30px;
+    display: inline-block;
+    font-size: 2.5rem;
+    position: relative;
+    z-index: 1;
   }
 }
 
@@ -427,8 +560,43 @@ p {
   }
 }
 
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+  .modal {
+    margin-top: 7.5rem;
+    width: 536px;
+    height: 85rem;
+    position: relative;
+    border-radius: 0.8rem;
+    background-color: #232323;
+    color: #FFFFFF;
+  }
+  .modal_header {
+    height: 3.6rem;
+    position: relative;
+  }
+  .modal_header_modal-quit-icon {
+    position: absolute;
+    top: 2.4rem;
+    right: 2.4rem;
+    font-size: 4.6rem;
+    line-height: 1.7rem;
+    color: white;
+    text-decoration: none;
+  }
+  .modal_header_modal-quit-icon:hover {
+    cursor: pointer;
+  }
+  .modal_main {
+    padding-left: 3.9rem;
+    padding-right: 3.9rem;
+    font-size: 0;
+  }
+}
+
 @media screen and (max-width: 991px) {
   .modal {
+    width: 354px;
+    margin: auto;
     margin-top: 7.6rem;
     width: 100%;
     height: 66rem;
@@ -460,7 +628,7 @@ p {
   }
 }
 
-@media (min-width: 1200px) {
+@media screen and (min-width: 992px) {
   .subscription_form_label {
     margin-top: 0.8rem;
     display: block;

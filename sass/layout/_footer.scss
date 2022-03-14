@@ -1,9 +1,11 @@
 .footer {
-    @include desktop() {
+    color: $color-red;
+    @include desktop-or-laptop() {
         margin-top : 9rem;
         margin-left: 4rem;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 500;
         &_copyright {
-            color: $color-red;
             font-size: 1.5rem;
             font-family: 'Roboto', sans-serif;
             font-weight: 500;
@@ -11,12 +13,10 @@
     }
     @include mobile() {
         margin-top : 3.6rem;
-        margin-left: 4rem;
         &_copyright {
-            color: $color-red;
+            width:100%;
+            text-align: center;
             font-size: 1rem;
-            font-family: 'Roboto', sans-serif;
-            font-weight: 500;
         }
     }
 }
