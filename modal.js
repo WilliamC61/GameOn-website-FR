@@ -159,7 +159,7 @@ function subscriptionLaunch(event) {
     lightbox.style.opacity = "1";
 }
 // identification of element on which events are listen
-const subcriptionLaunchButton = document.querySelector(".subscription-launch-button");
+const subcriptionLaunchButton = document.querySelector(".subscription-launch_button");
 const subscriptionFormSubmit = document.querySelector("#subscription-form");
 const modalHeaderModalQuitIcon = document.querySelector(".modal_header_modal-quit-icon");
 const modalConfirmationCloseButton = document.querySelector(".modal_confirmation_close_button");

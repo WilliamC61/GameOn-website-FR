@@ -7,25 +7,25 @@
  *                                                                              */
 //================================================================================
  @mixin mobile {
-    @media screen and (max-width: ($mobile-breakpoint - 1)) {
+    @media screen and (max-width: ($laptop-breakpoint - 1)) {
         @content;
     }   
 }
-@mixin small-tablet {
-    @media screen and (min-width: $mobile-breakpoint) and (max-width: ($tablet-breakpoint - 1)) {
-        @content;
-    }   
-}
-@mixin tablet {
-    @media screen and (min-width: $tablet-breakpoint) and (max-width: ($laptop-breakpoint - 1)) {
-        @content;
-    }   
-}
-@mixin laptop {
-    @media  screen and (min-width: $laptop-breakpoint) and (max-width: ($desktop-breakpoint - 1)) {
-        @content;
-    }
-}
+// @mixin small-tablet {
+//     @media screen and (min-width: $mobile-breakpoint) and (max-width: ($tablet-breakpoint - 1)) {
+//         @content;
+//     }   
+// }
+// @mixin tablet {
+//     @media screen and (min-width: $tablet-breakpoint) and (max-width: ($laptop-breakpoint - 1)) {
+//         @content;
+//     }   
+// }
+// @mixin laptop {
+//     @media  screen and (min-width: $laptop-breakpoint) and (max-width: ($desktop-breakpoint - 1)) {
+//         @content;
+//     }
+// }
 @mixin desktop {
     @media  (min-width: $desktop-breakpoint) {
         @content;

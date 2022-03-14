@@ -24,7 +24,7 @@
             <div class="header">
                 <img class="header_logo" src="public/img/logo/Logo.png" alt="Logo de GameOn" /> 
                 <nav class="header_top-nav">
-                    <span class="header_top-nav_burger-menu"><i class="fas fa-bars"></i></span>
+                    <button class="header_top-nav_burger-menu-button"><i class="fas fa-bars"></i></button>
                     <ul class="header_top-nav_ul">
                         <li class="header_top-nav_ul_li"><a class="header_top-nav_ul_li_a" href="#">Détails de l’évènement</a></li><!--white spaces
                     --><li class="header_top-nav_ul_li"><a class="header_top-nav_ul_li_a" href="#">À Propos</a></li><!--white spaces
@@ -41,9 +41,11 @@
                     <h2 class="subtitle">Vous aimez jouer ? Notre prochain évènement gaming est ouvert aux réservations... Places limitées !</h2>
                     <img class="background-picture" src="./public/img/background/bg_img.jpg" alt="photo d'une gameuse de dos">
                 </div>
-                <form>
-                    <input class="subscription-launch-button" type="button" value="Je m’inscris">
-                </form>
+                <div class="subscription-launch">
+                    <form>
+                        <input class="subscription-launch_button" type="button" value="Je m’inscris">
+                    </form>
+                </div>
             </div>
             
             <div id="lightbox" class="lightbox">
@@ -66,7 +68,7 @@
                                 <label class="subscription_form_label" for="date-of-birth">Date de naissance</label>
                                 <input class="subscription_form_input" type="date" id="date-of-birth" name="date-of-birth">
                                 <p class="subscription_form_error-message --date-of-birth"></p>
-                                <label class="subscription_form_label" for="played-tournament-number">À combien de tournois GameOn avez-vous déjà participé ?</label>
+                                <label class="subscription_form_label subscription_form_label--played-tournament-number" for="played-tournament-number"></label>
                                 <input class="subscription_form_input" type="number" min="0" max="20" id="played-tournament-number" name="played-tournament-nb">
                                 <p class="subscription_form_error-message --played-tournament-number"></p>
                                 <p class="subscription_form_label">A quel tournoi souhaitez-vous participer cette année ?</p>
@@ -117,6 +119,7 @@
         <footer class="footer">
             <p class="footer_copyright">Copyright 2014 - 2022, GameOn Inc.</p>
         </footer>
+        <script src="./menu.js"></script>
         <script src="./modal.js"></script>
     </body>
 </html>
