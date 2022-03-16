@@ -468,23 +468,13 @@ p {
 @import "./layout/container";
 @import "./layout/form";
 */
-@media screen and (min-width: 992px) {
-  .pitch {
-    margin-top: 8.5rem;
-    border-radius: 8px;
-    height: 66rem;
-    background-color: #232323;
-    overflow: hidden;
-    -webkit-box-shadow: 0px 12px 12px rgba(0, 0, 0, 0.25);
-            box-shadow: 0px 12px 12px rgba(0, 0, 0, 0.25);
-    position: relative;
-  }
+.pitch {
+  border-radius: 8px;
 }
 
-@media screen and (min-width: 768px) and (max-width: 991px) {
+@media screen and (min-width: 768px) {
   .pitch {
     margin-top: 8.5rem;
-    border-radius: 8px;
     height: 66rem;
     background-color: #232323;
     overflow: hidden;
@@ -496,52 +486,48 @@ p {
 
 @media screen and (max-width: 767px) {
   .pitch {
-    margint-top: 0;
-    width: 100%;
-    border-radius: 8px;
+    margin-top: 0;
     background-color: #FFFFFF;
   }
 }
 
-@media (min-width: 1200px) {
+.title {
+  font-weight: 500;
+}
+
+@media screen and (min-width: 768px) {
+  .title {
+    margin-left: 56px;
+    position: relative;
+    color: #FFFFFF;
+    z-index: 1;
+  }
+}
+
+@media screen and (min-width: 768px) and (min-width: 1200px) {
   .title {
     margin-top: 5rem;
-    margin-left: 56px;
     width: 830px;
-    position: relative;
-    z-index: 1;
     line-height: 12.5rem;
     font-size: 9.6rem;
-    font-weight: 500;
-    color: #FFFFFF;
   }
 }
 
-@media screen and (min-width: 992px) and (max-width: 1199px) {
+@media screen and (min-width: 768px) and (min-width: 992px) and (max-width: 1199px) {
   .title {
     margin-top: 6rem;
-    margin-left: 56px;
     width: 664px;
-    position: relative;
-    z-index: 1;
     line-height: 10rem;
     font-size: 7.68rem;
-    font-weight: 500;
-    color: #FFFFFF;
   }
 }
 
-@media screen and (min-width: 768px) and (max-width: 991px) {
+@media screen and (min-width: 768px) and (min-width: 768px) and (max-width: 991px) {
   .title {
     margin-top: 11rem;
-    margin-left: 56px;
     width: 539.5px;
-    position: relative;
-    z-index: 1;
     line-height: 8.125rem;
     font-size: 6.24rem;
-    font-weight: 500;
-    color: #FFFFFF;
   }
 }
 
@@ -549,12 +535,15 @@ p {
   .title {
     line-height: 5.2rem;
     font-size: 4rem;
-    font-weight: 500;
     color: #232323;
   }
 }
 
-@media (min-width: 1200px) {
+.subtitle {
+  font-weight: 400;
+}
+
+@media screen and (min-width: 768px) {
   .subtitle {
     margin-top: 7rem;
     margin-left: 56px;
@@ -563,33 +552,6 @@ p {
     z-index: 1;
     color: #FFFFFF;
     font-size: 2.4rem;
-    font-weight: 400;
-  }
-}
-
-@media screen and (min-width: 992px) and (max-width: 1199px) {
-  .subtitle {
-    margin-top: 7rem;
-    margin-left: 56px;
-    width: 425px;
-    position: relative;
-    z-index: 1;
-    color: #FFFFFF;
-    font-size: 2.4rem;
-    font-weight: 400;
-  }
-}
-
-@media screen and (min-width: 768px) and (max-width: 991px) {
-  .subtitle {
-    margin-top: 8.5rem;
-    margin-left: 56px;
-    width: 425px;
-    position: relative;
-    z-index: 1;
-    color: #FFFFFF;
-    font-size: 2.4rem;
-    font-weight: 400;
   }
 }
 
@@ -598,21 +560,10 @@ p {
     margin-top: 2.1rem;
     line-height: 1.7rem;
     font-size: 1.3rem;
-    font-weight: 400;
   }
 }
 
-@media screen and (min-width: 992px) {
-  .background-picture {
-    height: 66rem;
-    position: absolute;
-    top: 0;
-    right: 0;
-    z-index: 0;
-  }
-}
-
-@media screen and (min-width: 768px) and (max-width: 991px) {
+@media screen and (min-width: 768px) {
   .background-picture {
     height: 66rem;
     position: absolute;
@@ -652,19 +603,7 @@ p {
   font-style: normal;
 }
 
-@media screen and (min-width: 992px) {
-  .subscription-launch_button {
-    margin-top: 7rem;
-    margin-left: 56px;
-    padding: 11px 30px 11px 30px;
-    display: inline-block;
-    font-size: 2.5rem;
-    position: relative;
-    z-index: 1;
-  }
-}
-
-@media screen and (min-width: 768px) and (max-width: 991px) {
+@media screen and (min-width: 768px) {
   .subscription-launch_button {
     margin-top: 7rem;
     margin-left: 56px;
@@ -694,8 +633,8 @@ p {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  bottom: 0;
+  right: 0;
   background: rgba(196, 196, 196, 0.7);
   z-index: 1;
 }
@@ -726,6 +665,8 @@ p {
   position: relative;
   width: 100%;
   z-index: 2;
+  background-color: #232323;
+  color: #FFFFFF;
 }
 
 @media screen and (min-width: 768px) {
@@ -735,29 +676,6 @@ p {
     height: 85rem;
     position: relative;
     border-radius: 0.8rem;
-    background-color: #232323;
-    color: #FFFFFF;
-  }
-  .modal_header {
-    height: 3.6rem;
-    position: relative;
-  }
-  .modal_header_modal-quit-icon {
-    position: absolute;
-    top: 2.4rem;
-    right: 2.4rem;
-    font-size: 4.6rem;
-    line-height: 1.7rem;
-    color: white;
-    text-decoration: none;
-  }
-  .modal_header_modal-quit-icon:hover {
-    cursor: pointer;
-  }
-  .modal_main {
-    padding-left: 3.9rem;
-    padding-right: 3.9rem;
-    font-size: 0;
   }
 }
 
@@ -768,28 +686,64 @@ p {
     margin-left: auto;
     margin-right: auto;
     border-radius: 0.8rem 0.8rem 0 0;
-    background-color: #232323;
-    color: #FFFFFF;
   }
+}
+
+@media screen and (min-width: 768px) {
+  .modal_header {
+    height: 3.6rem;
+  }
+}
+
+@media screen and (max-width: 767px) {
   .modal_header {
     height: 3rem;
   }
+}
+
+.modal_header_modal-quit-icon {
+  color: white;
+  text-decoration: none;
+  position: absolute;
+}
+
+@media screen and (min-width: 768px) {
   .modal_header_modal-quit-icon {
-    position: absolute;
+    top: 2.4rem;
+    right: 2.4rem;
+    font-size: 4.6rem;
+    line-height: 1.7rem;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .modal_header_modal-quit-icon {
     top: 2rem;
     right: 2rem;
     font-size: 4rem;
     line-height: 1.7rem;
-    color: white;
-    text-decoration: none;
   }
-  .modal_header_modal-quit-icon:hover {
-    cursor: pointer;
+}
+
+.modal_header_modal-quit-icon:hover {
+  cursor: pointer;
+}
+
+.modal_main {
+  font-size: 0;
+}
+
+@media screen and (min-width: 768px) {
+  .modal_main {
+    padding-left: 3.9rem;
+    padding-right: 3.9rem;
   }
+}
+
+@media screen and (max-width: 767px) {
   .modal_main {
     margin-left: 3rem;
     margin-right: 3rem;
-    font-size: 0;
   }
 }
 
