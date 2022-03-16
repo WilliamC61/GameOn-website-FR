@@ -139,24 +139,28 @@ function subscriptionFormValidation(event) {
         const modalSubscription = document.querySelector(".modal_subscription");
         modalSubscription.style.display = "none";
         const modalConfirmation = document.querySelector(".modal_confirmation");
-        modalConfirmation.style.display = "block";
+        modalConfirmation.style.display = "flex";
     }
 }
 
 function modalQuit(event) {
     const modalSubscription = document.querySelector(".modal_subscription");
-    modalSubscription.style.display = "block";
+    modalSubscription.style.display = "none";
     const modalConfirmation = document.querySelector(".modal_confirmation");
     modalConfirmation.style.display = "none";
+    const modal = document.querySelector(".modal");
+    modal.style.display = "none";
     const lightbox = document.querySelector(".lightbox");
     lightbox.style.visibility = "hidden";
-    lightbox.style.opacity = "0";
 }
 
 function subscriptionLaunch(event) {
     const lightbox = document.querySelector(".lightbox");
     lightbox.style.visibility = "visible";
-    lightbox.style.opacity = "1";
+    const modal = document.querySelector(".modal");
+    modal.style.display = "flex";
+    const modalSubscription = document.querySelector(".modal_subscription");
+    modalSubscription.style.display = "block";
 }
 // identification of element on which events are listen
 const subcriptionLaunchButton = document.querySelector(".subscription-launch_button");

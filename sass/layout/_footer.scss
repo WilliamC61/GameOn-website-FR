@@ -1,19 +1,22 @@
 .footer {
-    color: $color-red;
-    @include desktop-or-laptop() {
+    @include desktop-or-laptop-or-tablet() {
         margin-top : 9rem;
-        margin-left: 4rem;
+        @include desktop-or-laptop() {
+            margin-left: -6rem;
+        }  
+        margin-bottom: 6rem;
+    }
+    @include mobile-or-small-tablet() {
+        margin-top : 1.8rem;
+    }
+    &_copyright {
+        color: $color-red;
         font-family: 'Roboto', sans-serif;
         font-weight: 500;
-        &_copyright {
+        @include desktop-or-laptop-or-tablet() {
             font-size: 1.5rem;
-            font-family: 'Roboto', sans-serif;
-            font-weight: 500;
         }
-    }
-    @include mobile() {
-        margin-top : 3.6rem;
-        &_copyright {
+        @include mobile-or-small-tablet {
             width:100%;
             text-align: center;
             font-size: 1rem;

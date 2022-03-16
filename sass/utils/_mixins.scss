@@ -29,23 +29,23 @@
     }
 }
 
-@mixin burger-menu {
+@mixin burger-menu ($ratio) {
     &_burger-menu-button {
         color: $color-red;
         background-color: $color-white;
         border: none;
-        padding-right: 2px;
-        font-size: 2rem;
+        font-size: $ratio*2rem;
         display: inline-block;
         &:hover {
             cursor: pointer;
         }
     }
     &_burger-menu {
+        z-index:2;
         background-color: $color-white;
-        padding: 10px;
+        padding: $ratio*0.5*10px;
         position: absolute;
-        top: 6rem;
+        top: $ratio*0.9*6rem;
         right: 0;
         border: 2px solid $color-grey;
         border-radius: 8px;
@@ -53,16 +53,16 @@
     }
     &_ul {
         list-style: none;
-        font-size: 1.4rem;
+        font-size: $ratio*0.9*1.4rem;
         display: inline-block;
         &_li {
             display: block;
             &_a {
                 display: block;
                 text-decoration: none;
-                font-size: 1.4rem;
+                font-size: $ratio*1.4rem;
                 font-weight: 500;
-                padding: 4px 8px 4px 8px;
+                padding: $ratio*4px $ratio*8px $ratio*4px $ratio*8px;
                 background-color: $color-white;
                 border-radius: 0.8rem;
                 &:visited, &:link {
@@ -85,7 +85,7 @@
  *                                                                              */
 //================================================================================
  @mixin mobile {
-    @media screen and (max-width: ($laptop-breakpoint - 1)) {
+    @media screen and (max-width: ($mobile-breakpoint - 1)) {
         @content;
     }   
 }
@@ -114,4 +114,19 @@
     @media  screen and (min-width: $laptop-breakpoint) {
         @content;
     }
+}
+@mixin tablet-or-mobile{
+    @media  screen and (max-width: ($laptop-breakpoint - 1)) {
+        @content;
+    }
+}
+@mixin desktop-or-laptop-or-tablet{
+    @media  screen and (min-width: $tablet-breakpoint) {
+        @content;
+    }
+}
+@mixin mobile-or-small-tablet {
+    @media screen and (max-width: ($tablet-breakpoint - 1)) {
+        @content;
+    } 
 }

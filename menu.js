@@ -11,8 +11,8 @@ function closeBurgerMenu(event) {
     if (!window.matchMedia("(min-width:" + " " + desktopkreakpoint + ")").matches) {
         setTimeout(function () {
             const burgerMenu = document.querySelector(".header_top-nav_burger-menu");
-            burgerMenu.style.visibility = "";
-        }, 300);
+            burgerMenu.style.visibility = ""; // "" and not "hidden" to preserve default value for desktop
+        }, 150);
     }
 }
 

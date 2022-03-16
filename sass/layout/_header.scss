@@ -15,16 +15,22 @@
     @include desktop() {
         height: 10rem;
         padding-top: 5rem;
-        margin-left: 100px;
-        margin-right: 100px;
         align-items: flex-end;
     }  
-    @include laptop () {
+    @include laptop() {
         height: 10rem;
         padding-top: 5rem;
-        margin-left: 100px;
-        margin-right: 100px;
-        align-items: flex-end;
+        position:relative;
+    }
+    @include tablet() {
+        height: 9rem;
+        padding-top: 4rem;
+        position:relative;
+    }
+    @include small-tablet() {
+        height: 8rem;
+        padding-top: 3rem;
+        position:relative;
     }
     @include mobile() {
         height: 8rem;
@@ -38,6 +44,12 @@
         @include laptop() {
             height: 5rem;
         }
+        @include tablet() {
+            height: 4rem;
+        }
+        @include small-tablet() {
+            height: 3rem;
+        }
         @include mobile() {
             height: 2rem;
             position: relative;
@@ -48,10 +60,16 @@
             @include one-line-menu();
         }
         @include laptop() {
-            @include burger-menu();
+            @include burger-menu(2.6);
+        }
+        @include tablet() {
+            @include burger-menu(2);
+        }
+        @include small-tablet() {
+            @include burger-menu(1.5);
         }
         @include mobile() {
-           @include burger-menu();
+           @include burger-menu(1);
         }
     }
 }
