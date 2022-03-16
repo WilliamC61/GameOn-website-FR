@@ -683,6 +683,7 @@ p {
   .modal {
     margin-top: 7.6rem;
     max-width: 460px;
+    height: 659px;
     margin-left: auto;
     margin-right: auto;
     border-radius: 0.8rem 0.8rem 0 0;
@@ -1024,6 +1025,18 @@ p {
           align-items: center;
 }
 
+.modal_confirmation_content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
 @media screen and (min-width: 768px) {
   .modal_confirmation_content {
     height: 74.6rem;
@@ -1038,62 +1051,57 @@ p {
             align-items: center;
   }
   .modal_confirmation_content_message {
-    width: 270;
     text-align: center;
     font-size: 3.6rem;
     line-height: 5.6rem;
-  }
-  .modal_confirmation_close {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-pack: distribute;
-        justify-content: space-around;
-  }
-  .modal_confirmation_close_button {
-    padding: 11px 56px 11px 56px;
-    font-size: 1.4rem;
-    font-weight: 500;
-    font-style: normal;
-    background-color: #FE142F;
-    color: #FFFFFF;
-    border-radius: 0.8rem;
-    border: none;
-  }
-  .modal_confirmation_close_button:hover {
-    cursor: pointer;
   }
 }
 
 @media screen and (max-width: 767px) {
+  .modal_confirmation_content {
+    height: 56rem;
+  }
   .modal_confirmation_content_message {
-    margin-top: 20.5rem;
     text-align: center;
     width: 28rem;
     font-size: 3.6rem;
     line-height: 5.6rem;
+    padding-bottom: 7rem;
   }
-  .modal_confirmation_close {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-pack: distribute;
-        justify-content: space-around;
-  }
+}
+
+.modal_confirmation_close {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.modal_confirmation_close_button {
+  font-size: 1.4rem;
+  font-weight: 500;
+  font-style: normal;
+  background-color: #FE142F;
+  color: #FFFFFF;
+  border-radius: 0.8rem;
+  border: none;
+}
+
+@media screen and (min-width: 768px) {
   .modal_confirmation_close_button {
-    margin-top: 26rem;
-    margin-bottom: 2.2rem;
+    padding: 11px 56px 11px 56px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .modal_confirmation_close_button {
     padding: 6px 35px 6px 35px;
-    font-size: 1.4rem;
-    font-weight: 500;
-    font-style: normal;
-    background-color: #FE142F;
-    color: #FFFFFF;
-    border-radius: 0.8rem;
-    border: none;
   }
-  .modal_confirmation_close_button:hover {
-    cursor: pointer;
-  }
+}
+
+.modal_confirmation_close_button:hover {
+  cursor: pointer;
 }
 /*# sourceMappingURL=style.css.map */
