@@ -194,259 +194,183 @@
 }
 
 .subscription_form {
-    @include desktop-or-laptop-or-tablet {
-        &_label {
+    &_label {
+        display: block;
+        line-height: 1.4rem;
+        font-size: 1.4rem;
+        font-weight: 400;
+        @include desktop-or-laptop-or-tablet {
             margin-top: 0.8rem;
-            display: block;
-            line-height: 1.4rem;
-            font-size: 1.4rem;
-            font-weight: 400;
             &--played-tournament-number:before {
                 content: "À combien de tournois GameOn avez-vous déjà participé ?"
             }
         }
-        &_input {
-            margin-top: 0.7rem;
-            width:100%;
-            height: 6.4rem;
-            border: 1px solid #C4C4C4;
-            border-radius: 0.8rem;
-            font-size: 1.8rem;
-            line-height: 1.8rem;
-            font-weight: 400;
-            &:hover {
-                cursor: text;
-            }
-        }
-        &_error-message {
-            margin-top: 0.2rem;
-            font-size: 1.1rem;
-            height: 1.1rem;
-            line-height: 1.1rem;
-            color: $color-warning;
-        }
-        &_input-location{
-            margin-top: 0.8rem;
-        }
-        &_input-radio{
-            appearance: none;
-            &:checked + label:before,
-            &:checked + label:after {
-                border-color: $color-green; 
-            }
-            &_label {
-                margin-right: 2.8rem;
-                margin-bottom: 1.0rem;
-                font-size: 1.2rem;
-                line-height: 1.2rem;
-                font-weight: 400;
-                display: inline-block;
-                vertical-align: middle;
-                position: relative;
-            
-                &:hover {
-                    cursor: pointer;
-                }
-                &:before{
-                    content: "";
-                    display: inline-block;
-                    vertical-align: middle;
-                    top: 0; 
-                    left: 0;
-                    width: 26px;
-                    height: 26px;
-                    margin-right: 6px;
-                    border-radius: 50%;
-                    border:  0.1rem solid $color-grey;
-                }
-                &:after {
-                    content: "";
-                    display: inline-block;
-                    position: absolute;
-                    top: 4px;
-                    left:4px;
-                    width: 0;
-                    height: 0;
-                    border-radius: 50%;
-                    border:  (26-8)/2*1px solid $color-black;
-                }
-            }
-        }
-        &_input-checkbox{
-            appearance: none;
-            &:checked + label > &_label_icon-check {
-                background-color: $color-green; 
-                color: $color-white;
-            }
-            &_label {
-                margin-top: 0.2rem;
-                margin-right: 1.4rem;
-                font-size: 1.2rem;
-                line-height: 2.6rem;
-                font-weight: 400;
-                display: inline-block;
-                position: relative;
-                &:hover {
-                    cursor: pointer;
-                }
-                &_icon-check {
-                    display: inline-block;
-                    position: relative;
-                    width: 2.6rem;
-                    height: 2.6rem;
-                    margin-right: 0.6rem;
-                    border-radius: 6px;
-                    background-color: $color-grey;
-                    color: $color-grey;
-                    font-size: 1.4rem;
-                    padding-left: (26-14)/2*1px;
-                }
-            }
-        }
-        &_submit {
-            margin-top: 1.6rem;
-            display: flex;
-            justify-content: space-around;
-            &_button {
-                padding: 11px 56px 11px 56px;
-                font-size: 1.4rem;
-                font-weight: 500;
-                font-style: normal;
-                background-color: $color-red;
-                color: $color-white;
-                border-radius: 0.8rem;
-                border:none;
-                &:hover {
-                    cursor: pointer;
-                }
-            }
-        }
-    }
-    @include mobile-or-small-tablet {
-        &_label {
+        @include mobile-or-small-tablet {
             margin-top: 0.6rem;
-            display: block;
-            line-height: 1.4rem;
-            font-size: 1.4rem;
-            font-weight: 400;
             &--played-tournament-number:before {
                 content: "À combien de tournois avez-vous déjà participé ?"
             }
         }
-        &_input {
+    }
+    &_input {
+        width:100%;
+        border: 1px solid #C4C4C4;
+        border-radius: 0.8rem;
+        font-size: 1.8rem;
+        line-height: 1.8rem;
+        font-weight: 400;
+        @include desktop-or-laptop-or-tablet {
             margin-top: 0.7rem;
-            width:100%;
+            height: 6.4rem;
+        }
+        @include mobile-or-small-tablet {
+            margin-top: 0.7rem;
             height: 4rem;
-            border: 1px solid #C4C4C4;
-            border-radius: 0.8rem;
-            font-size: 1.8rem;
-            line-height: 1.8rem;
+        }
+        &:hover {
+            cursor: text;
+        }
+    }
+    &_error-message {
+        margin-top: 0.2rem;
+        font-size: 1.1rem;
+        height: 1.1rem;
+        line-height: 1.1rem;
+        color: $color-warning;
+    }
+    &_input-location{
+        margin-top: 0.8rem;
+    }
+    &_input-radio{
+        appearance: none;
+        &:checked + label:before,
+        &:checked + label:after {
+            border-color: $color-green; 
+        }
+        &_label {
+            margin-right: 2.8rem;
+            font-size: 1.2rem;
+            line-height: 1.2rem;
             font-weight: 400;
-            &:hover {
-                cursor: text;
+            display: inline-block;
+            vertical-align: middle;
+            position: relative;
+            @include desktop-or-laptop-or-tablet {
+                margin-bottom: 1.0rem;
             }
-        }
-        &_error-message {
-            margin-top: 0.2rem;
-            font-size: 1.1rem;
-            height: 1.1rem;
-            line-height: 1.1rem;
-            color: $color-warning;
-        }
-        &_input-location{
-            margin-top: 0.8rem;
-        }
-        &_input-radio{
-            appearance: none;
-            &:checked + label:before,
-            &:checked + label:after {
-                border-color: $color-green; 
-            }
-            &_label {
-                margin-right: 2.8rem;
+            @include mobile-or-small-tablet {
                 margin-bottom: 0.6rem;
-                font-size: 1.2rem;
-                line-height: 1.2rem;
-                font-weight: 400;
+            }    
+            &:hover {
+                cursor: pointer;
+            }
+            &:before {
+                content: "";
                 display: inline-block;
                 vertical-align: middle;
-                position: relative;
-                &:hover {
-                    cursor: pointer;
+                top: 0; 
+                left: 0;
+                border-radius: 50%;
+                border:  0.1rem solid $color-grey;
+                margin-right: 6px;
+                @include desktop-or-laptop-or-tablet() {
+                    width: 26px;
+                    height: 26px;
                 }
-                &:before{
-                    content: "";
-                    display: inline-block;
-                    vertical-align: middle;
-                    top: 0; 
-                    left: 0;
+                @include mobile-or-small-tablet() {
                     width: 20px;
                     height: 20px;
-                    margin-right: 6px;
-                    border-radius: 50%;
-                    border:  0.1rem solid $color-grey;
                 }
-                &:after {
-                    content: "";
-                    display: inline-block;
-                    position: absolute;
-                    top: 4px;
-                    left:4px;
-                    width: 0;
-                    height: 0;
-                    border-radius: 50%;
+            }
+            &:after {
+                content: "";
+                display: inline-block;
+                position: absolute;
+                top: 4px;
+                left:4px;
+                width: 0;
+                height: 0;
+                border-radius: 50%;
+                @include desktop-or-laptop-or-tablet() {
+                    border:  (26-8)/2*1px solid $color-black;
+                }
+                @include mobile-or-small-tablet() {                 
                     border:  (20-8)/2*1px solid $color-black;
                 }
             }
         }
-        &_input-checkbox{
-            appearance: none;
-            &:checked + label > &_label_icon-check {
-                background-color: $color-green; 
-                color: $color-white;
+    }
+    &_input-checkbox{
+        appearance: none;
+        &:checked + label > &_label_icon-check {
+            background-color: $color-green; 
+            color: $color-white;
+        }
+        &_label {
+            margin-right: 1.4rem;
+            font-size: 1.2rem;
+            font-weight: 400;
+            display: inline-block;
+            position: relative;
+            @include desktop-or-laptop-or-tablet() {
+                margin-top: 0.2rem;
+                line-height: 2.6rem;
             }
-            &_label {
+            @include mobile-or-small-tablet {
                 margin-top: 0.6rem;
-                margin-right: 1.4rem;
-                font-size: 1.2rem;
                 line-height: 2rem;
-                font-weight: 400;
+            }
+            &:hover {
+                cursor: pointer;
+            }
+            &_icon-check {
                 display: inline-block;
                 position: relative;
-                &:hover {
-                    cursor: pointer;
+                margin-right: 0.6rem;
+                border-radius: 6px;
+                background-color: $color-grey;
+                color: $color-grey;
+                @include desktop-or-laptop-or-tablet() {
+                    width: 2.6rem;
+                    height: 2.6rem;
+                    font-size: 1.4rem;
+                    padding-left: (26-14)/2*1px;
                 }
-                &_icon-check {
-                    display: inline-block;
-                    position: relative;
+                @include mobile-or-small-tablet() {
                     width: 2rem;
                     height: 2rem;
-                    margin-right: 0.6rem;
-                    border-radius: 6px;
-                    background-color: $color-grey;
-                    color: $color-grey;
                     font-size: 1rem;
                     padding-left: (20-10)/2*1px;
                 }
             }
         }
-        &_submit {
+    }
+    &_submit {
+        display: flex;
+        justify-content: center;
+        @include desktop-or-laptop-or-tablet() {
+            margin-top: 1.6rem;
+        }
+        @include mobile-or-small-tablet() {
             margin-top: 0.6rem;
-            display: flex;
-            justify-content: center;
             margin-bottom: 2.2rem;
-            &_button {
-                padding: 6px 35px 6px 35px;
-                font-size: 1.4rem;
+        }
+        &_button {
+            font-size: 1.4rem;
                 font-weight: 500;
                 font-style: normal;
                 background-color: $color-red;
                 color: $color-white;
                 border-radius: 0.8rem;
                 border:none;
-                &:hover {
-                    cursor: pointer;
-                }
+            @include desktop-or-laptop-or-tablet() {
+                padding: 11px 56px 11px 56px;
+            }
+            @include mobile-or-small-tablet() {
+                padding: 6px 35px 6px 35px;
+            }
+            &:hover {
+                cursor: pointer;
             }
         }
     }
