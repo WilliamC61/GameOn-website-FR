@@ -27,8 +27,7 @@
 // ────────────────────────────────────────────────────────────────────────────
 
 /**
- * firstnameValidation() : validate first name
- *
+ * @function firstnameValidation() : validate first name
  * @returns:
  *      0 (0 error) if firsname is at least 2 characters long
  *      1 (error found) if not
@@ -51,8 +50,7 @@ function firstNameValidation() {
 }
 
 /**
- * nameValidation() : validate first name
- *
+ * @function nameValidation() : validate first name
  * @returns:
  *      0 (0 error) if firsname is at least 2 characters long
  *      1 (error found) if not
@@ -75,8 +73,7 @@ function nameValidation() {
 }
 
 /**
- * eMailValidation() : validate  eMail
- *
+ * @function eMailValidation() : validate  eMail
  * @returns:
  *      0 (0 error) if eMail match email regex template
  *      1 (error found) if not
@@ -100,12 +97,13 @@ function eMailValidation() {
 }
 
 /**
- * isDateValid(date) : check if the date in argument is a valid date.
- * @param {*} date : the date to be tested
+ * @function isDateValid(date) : check if the date in argument is a valid
+ *           date. (generic as not linked to a specific input field)
+ * @param {date} date : the date to be tested
  * @returns:
  *      true if the date is valid
  *      false if not
- * * The expected format is "YYYY/MM/DD". the check is made in 4 pass:
+ * The expected format is "YYYY/MM/DD". the check is made in 4 pass:
  *      1/ check of the date template used to split the date string
  *      2/ check that month is in range 1..12
  *      3/ check that the day is coherent with month (using an array)
@@ -138,8 +136,7 @@ function isDateValid(date) {
 }
 
 /**
- * dateOfBirthValidation() : validate birth date
- *
+ * @function dateOfBirthValidation() : validate birth date
  * @returns:
  *      0 (0 error) if given date is a valid date
  *      1 (error found) if the date is of invalid format
@@ -161,8 +158,7 @@ function dateOfBirthValidation() {
 }
 
 /**
- * playedTournamentNumberValidation() : validate the number of tournament played
- *
+ * @function playedTournamentNumberValidation() : validate the number of tournament played
  * @returns:
  *      0 (0 error) if the number is not valid
  *      1 (error found) if not
@@ -190,8 +186,7 @@ function playedTournamentNumberValidation() {
 }
 
 /**
- * locationValidation() : validate that a next tournament location is selected
- *
+ * @function locationValidation() : validate that a next tournament location is selected
  * @returns:
  *      0 (0 error) if one city is selected
  *      1 (error found) if no city selected
@@ -216,8 +211,7 @@ function locationValidation() {
 }
 
 /**
- * termOfUseValidation() : validate that the terms of use checkbox is checked.
- *
+ * @function termOfUseValidation() : validate that the terms of use checkbox is checked.
  * @returns:
  *      0 (0 error) if the checkbox is checked
  *      1 (error found) if not
@@ -238,12 +232,13 @@ function termsOfUseValidation() {
 }
 
 /**
- *  subscriptionFormValidation() : Global validation of subscription form.
- *
- * @param {*} event : the submit event that is fully processed and not
+ * @function subscriptionFormValidation() : Global validation of subscription
+ *      form.
+ * @param {event} event : the submit event that is fully processed and not
  *      propagated forward.
+ * @listens submit event of the subscription form
  *
- *  if the validation is OK
+ *   if the validation is OK
  *      the confirmation form is displayed in replacement of the
  *      subscription one
  *  else
@@ -257,7 +252,6 @@ function termsOfUseValidation() {
  * structure (chain of && or ||) would not insure the  all tests performance.
  *
  */
-
 function subscriptionFormValidation(event) {
     event.preventDefault();
     const errorNumber = firstNameValidation() +
@@ -276,9 +270,11 @@ function subscriptionFormValidation(event) {
 }
 
 /**
- *  modalQuit() : close the modal and the lightbox and return to main page.
- *
- * The subscription, confirmation and modal are hidden (display: none).
+ * @function modalQuit() : close the modal and the lightbox and return to main
+ *      page.
+ * @listens click event on quit icon or "close" button of the modal header and
+ *      confirmation modal.
+ * * The subscription, confirmation and modal are hidden (display: none).
  * The modal header is kept untouched has hidden by the container modal.
  * Subcription and confirmation are hidden to retrun back to initial
  * HTML/CSS sate hidden, hidden.
@@ -299,8 +295,8 @@ function modalQuit() {
 }
 
 /**
- *  subscriptionLaunch() : display lightbox and the subscription form.
- *
+ * @function subscriptionLaunch() : display lightbox and the subscription form.
+ * @listens click event on the button "I subscribe"
  * The light box is displeyed with visibility: visible.
  * The subscription is displayed with display: flex.
  * Nothing to do for the modal header
