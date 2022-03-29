@@ -1,5 +1,5 @@
 # Projet GameOn
- https://williamc61.github.io/GameOn-website-FR/
+ https://williamc61.github.io/GameOn-website-FR/index.html
 1. Forkez ce repo ;
 2. Il est conseillé d'utiliser VisualStudio Code et vous pouvez utiliser Docker, mais ce n'est pas obligatoire ;
 3. Il n'y a aucune dépendance ;
