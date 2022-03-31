@@ -1,0 +1,1302 @@
+@charset "UTF-8";
+/*                                                                            *
+ * 2 main mixins:                                                             *
+ * - one-line-menu to format nav menu for desktop                             *
+ * - burger-menu($ratio) to format menu for mobile, small-table, tablet and   *
+ * laptop                                                                     *
+ * The other mixin are used to encapsulate media query for the responsiveness *
+ *                                                                            */
+/*
+ * @mixin one-line-menu() : used for desktop nav menu
+ * The burger-menu icon is hidden
+ * The menu items are displayed as inline-block to have the menu on one
+ * line. The other formattings are the direct translation of the mockup.
+ */
+/*
+ * @mixin burger-menu($ratio) : used for mobile to laptop included screen size
+ * @param $ratio : used to size the menu
+ *
+ * The burger-menu icon is displayed and sized according to $ratio
+ * The burge-menu is kept hidden till click on the burger-menu icon. It is
+ * hidden back on the click on one of the menu items. This behavior ismanaged by
+ * JavaScript code in menu.js. 
+ * The menu items are displayed as block to have the menu on one column.
+ * Z-index:2 is used to have the menu on top of the other page conetent.
+ * The menu items are formatted whith the same spirit as the desktop mockup.
+ * They are sized according $ratio. A grey border is added around the menu.
+ * Top, bottom margins were added between the itmes to ease selection on mobile
+ * and kept for all screen sizes.
+ */
+/*
+ * The below mixins help to implement media queries to target on screen type or
+ * range of screen type. their name are self explanatory.
+ * 
+ * Below you have the link between screen (responsive) categories and the
+ * breakpoints.
+ *
+ *    mobile-bkpt            tablet-bkpt        laptop-bkpt     desktop-bkpt
+ * mobile |        small-tablet    |      tablet     |     laptop    | desktop
+ *
+ */
+/*                                                                            *
+ * some global settings like reset, rem, and body margins                     *
+ *                                                                            */
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: inherit;
+          box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  background: #FFFFFF;
+}
+
+@media screen and (min-width: 992px) {
+  body {
+    margin-left: 100px;
+    margin-right: 100px;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  body {
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+}
+
+@media screen and (min-width: 576px) and (max-width: 767px) {
+  body {
+    margin-left: 30px;
+    margin-right: 30px;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  body {
+    margin-left: 30px;
+    margin-right: 30px;
+  }
+}
+
+/*                                                                            *
+ *            default font configuration for body h1, h2, h3 and p            *
+ *                                                                            */
+body {
+  font-family: 'DM Sans', sans-serif;
+  color: #232323;
+  font-size: 1.8rem;
+  font-weight: normal;
+  line-height: 1;
+}
+
+h1 {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  font-size: 2.5rem;
+  font-style: normal;
+  line-height: 1.1;
+}
+
+h2 {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  font-size: 2.5rem;
+  font-style: normal;
+  line-height: 1.1;
+}
+
+h3 {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  font-size: 1.8rem;
+  font-style: normal;
+  line-height: 1.1;
+}
+
+p {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  font-size: 1.7rem;
+  line-height: 3rem;
+}
+
+/*                                                                            *
+ * header                                                                     *
+ *                                                                            *
+ * It's arow flexbox including logo and nav                                   *
+ * The height is customized depending on the screen size and logo is sized    *
+ * accordingly.                                                               *
+ * For desktop, the logo and the one-line menu is aligned to the bottom of    *
+ * header, for the other screen sizes burger menu is displayed in an absolute *
+ * position.                                                                  *
+ * The nav menus is formatted using the 2 mixin on-line-menu and burger-menu. *
+ * Burger-menu has a retio parameter to size the menu depending on the screen *
+ * size.                                                                      * 
+ *                                                                            */
+.header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
+@media (min-width: 1200px) {
+  .header {
+    height: 10rem;
+    -webkit-box-align: end;
+        -ms-flex-align: end;
+            align-items: flex-end;
+  }
+}
+
+@media screen and (max-width: 1199px) {
+  .header {
+    position: relative;
+  }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+  .header {
+    height: 9rem;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  .header {
+    height: 8rem;
+  }
+}
+
+@media screen and (min-width: 576px) and (max-width: 767px) {
+  .header {
+    height: 7rem;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .header {
+    height: 5rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .header_logo {
+    height: 5rem;
+  }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+  .header_logo {
+    height: 4.5rem;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  .header_logo {
+    height: 4 rem;
+  }
+}
+
+@media screen and (min-width: 576px) and (max-width: 767px) {
+  .header_logo {
+    height: 3rem;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .header_logo {
+    height: 2rem;
+    position: relative;
+  }
+}
+
+@media (min-width: 1200px) {
+  .header_top-nav_burger-menu-button {
+    display: none;
+  }
+  .header_top-nav_ul {
+    list-style: none;
+    margin: 0;
+    vertical-align: bottom;
+  }
+  .header_top-nav_ul_li {
+    display: inline-block;
+  }
+  .header_top-nav_ul_li_a {
+    display: block;
+    text-decoration: none;
+    font-size: 1.8rem;
+    font-weight: 500;
+    padding: 9px 14px 9px 12px;
+    background-color: #FFFFFF;
+    border-radius: 0.8rem;
+  }
+  .header_top-nav_ul_li_a:visited, .header_top-nav_ul_li_a:link {
+    color: #232323;
+  }
+  .header_top-nav_ul_li_a:hover, .header_top-nav_ul_li_a:active, .header_top-nav_ul_li_a:focus {
+    background-color: #FE142F;
+    color: #FFFFFF;
+    -webkit-text-decoration: underline #FFFFFF;
+            text-decoration: underline #FFFFFF;
+  }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+  .header_top-nav_burger-menu-button {
+    color: #FE142F;
+    background-color: #FFFFFF;
+    border: none;
+    font-size: 5.2rem;
+  }
+  .header_top-nav_burger-menu-button:hover {
+    cursor: pointer;
+  }
+  .header_top-nav_burger-menu {
+    z-index: 2;
+    background-color: #FFFFFF;
+    padding: 13px;
+    position: absolute;
+    top: 14.04rem;
+    right: 0;
+    border: 2px solid #C4C4C4;
+    border-radius: 8px;
+    visibility: hidden;
+  }
+  .header_top-nav_ul {
+    list-style: none;
+    padding: 0;
+  }
+  .header_top-nav_ul_li {
+    display: block;
+  }
+  .header_top-nav_ul_li_a {
+    display: block;
+    text-decoration: none;
+    font-size: 3.64rem;
+    font-weight: 500;
+    margin: 4px 0px 4px 0px;
+    padding: 10.4px 20.8px 10.4px 20.8px;
+    background-color: #FFFFFF;
+    border-radius: 0.8rem;
+  }
+  .header_top-nav_ul_li_a:visited, .header_top-nav_ul_li_a:link {
+    color: #232323;
+  }
+  .header_top-nav_ul_li_a:hover, .header_top-nav_ul_li_a:active, .header_top-nav_ul_li_a:focus {
+    background-color: #FE142F;
+    color: #FFFFFF;
+    -webkit-text-decoration: underline #FFFFFF;
+            text-decoration: underline #FFFFFF;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  .header_top-nav_burger-menu-button {
+    color: #FE142F;
+    background-color: #FFFFFF;
+    border: none;
+    font-size: 4rem;
+  }
+  .header_top-nav_burger-menu-button:hover {
+    cursor: pointer;
+  }
+  .header_top-nav_burger-menu {
+    z-index: 2;
+    background-color: #FFFFFF;
+    padding: 10px;
+    position: absolute;
+    top: 10.8rem;
+    right: 0;
+    border: 2px solid #C4C4C4;
+    border-radius: 8px;
+    visibility: hidden;
+  }
+  .header_top-nav_ul {
+    list-style: none;
+    padding: 0;
+  }
+  .header_top-nav_ul_li {
+    display: block;
+  }
+  .header_top-nav_ul_li_a {
+    display: block;
+    text-decoration: none;
+    font-size: 2.8rem;
+    font-weight: 500;
+    margin: 4px 0px 4px 0px;
+    padding: 8px 16px 8px 16px;
+    background-color: #FFFFFF;
+    border-radius: 0.8rem;
+  }
+  .header_top-nav_ul_li_a:visited, .header_top-nav_ul_li_a:link {
+    color: #232323;
+  }
+  .header_top-nav_ul_li_a:hover, .header_top-nav_ul_li_a:active, .header_top-nav_ul_li_a:focus {
+    background-color: #FE142F;
+    color: #FFFFFF;
+    -webkit-text-decoration: underline #FFFFFF;
+            text-decoration: underline #FFFFFF;
+  }
+}
+
+@media screen and (min-width: 576px) and (max-width: 767px) {
+  .header_top-nav_burger-menu-button {
+    color: #FE142F;
+    background-color: #FFFFFF;
+    border: none;
+    font-size: 3rem;
+  }
+  .header_top-nav_burger-menu-button:hover {
+    cursor: pointer;
+  }
+  .header_top-nav_burger-menu {
+    z-index: 2;
+    background-color: #FFFFFF;
+    padding: 7.5px;
+    position: absolute;
+    top: 8.1rem;
+    right: 0;
+    border: 2px solid #C4C4C4;
+    border-radius: 8px;
+    visibility: hidden;
+  }
+  .header_top-nav_ul {
+    list-style: none;
+    padding: 0;
+  }
+  .header_top-nav_ul_li {
+    display: block;
+  }
+  .header_top-nav_ul_li_a {
+    display: block;
+    text-decoration: none;
+    font-size: 2.1rem;
+    font-weight: 500;
+    margin: 4px 0px 4px 0px;
+    padding: 6px 12px 6px 12px;
+    background-color: #FFFFFF;
+    border-radius: 0.8rem;
+  }
+  .header_top-nav_ul_li_a:visited, .header_top-nav_ul_li_a:link {
+    color: #232323;
+  }
+  .header_top-nav_ul_li_a:hover, .header_top-nav_ul_li_a:active, .header_top-nav_ul_li_a:focus {
+    background-color: #FE142F;
+    color: #FFFFFF;
+    -webkit-text-decoration: underline #FFFFFF;
+            text-decoration: underline #FFFFFF;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .header_top-nav_burger-menu-button {
+    color: #FE142F;
+    background-color: #FFFFFF;
+    border: none;
+    font-size: 2rem;
+  }
+  .header_top-nav_burger-menu-button:hover {
+    cursor: pointer;
+  }
+  .header_top-nav_burger-menu {
+    z-index: 2;
+    background-color: #FFFFFF;
+    padding: 5px;
+    position: absolute;
+    top: 5.4rem;
+    right: 0;
+    border: 2px solid #C4C4C4;
+    border-radius: 8px;
+    visibility: hidden;
+  }
+  .header_top-nav_ul {
+    list-style: none;
+    padding: 0;
+  }
+  .header_top-nav_ul_li {
+    display: block;
+  }
+  .header_top-nav_ul_li_a {
+    display: block;
+    text-decoration: none;
+    font-size: 1.4rem;
+    font-weight: 500;
+    margin: 4px 0px 4px 0px;
+    padding: 4px 8px 4px 8px;
+    background-color: #FFFFFF;
+    border-radius: 0.8rem;
+  }
+  .header_top-nav_ul_li_a:visited, .header_top-nav_ul_li_a:link {
+    color: #232323;
+  }
+  .header_top-nav_ul_li_a:hover, .header_top-nav_ul_li_a:active, .header_top-nav_ul_li_a:focus {
+    background-color: #FE142F;
+    color: #FFFFFF;
+    -webkit-text-decoration: underline #FFFFFF;
+            text-decoration: underline #FFFFFF;
+  }
+}
+
+/*                                                                            *
+ * footer : 2 flavors:                                                        *
+ * - for desktop, laptop and tablet the copyright is left justified           *
+ * - for small tablet and mobile it is centered                               *
+ * Roboto font is used.                                                       *
+ *                                                                            */
+@media screen and (min-width: 768px) {
+  .footer {
+    margin-top: 9rem;
+    margin-bottom: 6rem;
+  }
+}
+
+@media screen and (min-width: 768px) and (min-width: 992px) {
+  .footer {
+    margin-left: -6rem;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .footer {
+    margin-top: 1.8rem;
+  }
+}
+
+.footer_copyright {
+  color: #FE142F;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+}
+
+@media screen and (min-width: 768px) {
+  .footer_copyright {
+    font-size: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .footer_copyright {
+    width: 100%;
+    text-align: center;
+    font-size: 1rem;
+  }
+}
+
+/*                                                                            *
+ * index.scss : main sass file for the welcome page                           *
+ * 2 main parts:                                                              *
+ * - pitch for the welcome page itself                                        *
+ * - modal for the modal window. It includes 3 parts:                         *
+ *   o a header                                                               *
+ *   o the subcription form                                                   *
+ *   o the confirmation form                                                  *
+ * The diaply of the different part and the form validation are manage by the *
+ *                                                                            */
+/*
+ * <div> pitch
+ * For desktop, laptop and tablet title subtitle and subscription button are 
+ * displayed over the picture with a black box left size to have box + 
+ * background image covering the page width.
+ * This is obtained by using a black background for the div pitch (z-index:0)
+ * and setting the image with an aboslute position to the upper rigt corner
+ * with same height as the pitch div.
+ * The title, subtitle and button are displayed sequentially with z-index:1
+ * to be over the image even if coming before in the display flow.
+ * To have a better look some sizing adapation are done for laptop and tablet
+ * vs the pure desktop mockup.   
+ * for mobile and small-tablet, a centered display is done: title, subtitle, 
+ * background image and subscription button are displayed sequentially asin the
+ * html, and the sccss is common.
+ */
+.pitch {
+  border-radius: 8px;
+}
+
+@media screen and (min-width: 768px) {
+  .pitch {
+    margin-top: 8.5rem;
+    height: 66rem;
+    background-color: #232323;
+    overflow: hidden;
+    -webkit-box-shadow: 0px 12px 12px rgba(0, 0, 0, 0.25);
+            box-shadow: 0px 12px 12px rgba(0, 0, 0, 0.25);
+    position: relative;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .pitch {
+    margin-top: 3rem;
+    background-color: #FFFFFF;
+  }
+}
+
+.title {
+  font-weight: 500;
+}
+
+@media screen and (min-width: 768px) {
+  .title {
+    margin-left: 56px;
+    position: relative;
+    color: #FFFFFF;
+    z-index: 1;
+  }
+}
+
+@media screen and (min-width: 768px) and (min-width: 1200px) {
+  .title {
+    margin-top: 5rem;
+    width: 830px;
+    line-height: 12.5rem;
+    font-size: 9.6rem;
+  }
+}
+
+@media screen and (min-width: 768px) and (min-width: 992px) and (max-width: 1199px) {
+  .title {
+    margin-top: 6rem;
+    width: 664px;
+    line-height: 10rem;
+    font-size: 7.68rem;
+  }
+}
+
+@media screen and (min-width: 768px) and (min-width: 768px) and (max-width: 991px) {
+  .title {
+    margin-top: 11rem;
+    width: 539.5px;
+    line-height: 8.125rem;
+    font-size: 6.24rem;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .title {
+    line-height: 5.2rem;
+    font-size: 4rem;
+    color: #232323;
+  }
+}
+
+.subtitle {
+  font-weight: 400;
+}
+
+@media screen and (min-width: 768px) {
+  .subtitle {
+    margin-top: 7rem;
+    margin-left: 56px;
+    width: 425px;
+    position: relative;
+    z-index: 1;
+    color: #FFFFFF;
+    font-size: 2.4rem;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .subtitle {
+    margin-top: 2.1rem;
+    line-height: 1.7rem;
+    font-size: 1.3rem;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .background-picture {
+    height: 66rem;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 0;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .background-picture {
+    margin-top: 4.1rem;
+    width: 100%;
+    border-radius: 8px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .subscription-launch {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+}
+
+.subscription-launch_button {
+  background-color: #FE142F;
+  color: #FFFFFF;
+  border-radius: 0.8rem;
+  border: none;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+@media screen and (min-width: 768px) {
+  .subscription-launch_button {
+    margin-top: 7rem;
+    margin-left: 56px;
+    padding: 11px 30px 11px 30px;
+    display: inline-block;
+    font-size: 2.5rem;
+    position: relative;
+    z-index: 1;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .subscription-launch_button {
+    margin-top: 2.6rem;
+    padding: 7px 30px 7px 30px;
+    font-size: 1.4rem;
+  }
+}
+
+.subscription-launch_button:hover {
+  cursor: pointer;
+}
+
+/*
+ * <div> lightbox
+ * 
+ * It is used to cover all the page body when the modal window is displayed.
+ * It is declared at the end of the body to actually cover everything.
+ * It is displayed on the click on the suvscirption button and close when the
+ * modal window is closed. This is managed by the JavaScript code in modal.js.
+ * z-index:1 is used to cover the text of the pitch div.
+ */
+.lightbox {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(196, 196, 196, 0.7);
+  z-index: 1;
+}
+
+/*
+ * <div> .modal_container
+ * 
+ * It is used to position the modal window below the header and to center it on
+ * the page width. It is always displayed as when the modal is not displayed it
+ * is empty.
+ * z-index:2 to be over the lightbox (z-index:1 and come later in the flow)
+ */
+.modal-container {
+  position: absolute;
+  left: 0;
+  z-index: 2;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+@media (min-width: 1200px) {
+  .modal-container {
+    top: 10rem;
+  }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+  .modal-container {
+    top: 9rem;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  .modal-container {
+    top: 8rem;
+  }
+}
+
+@media screen and (min-width: 576px) and (max-width: 767px) {
+  .modal-container {
+    top: 7rem;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .modal-container {
+    top: 5rem;
+  }
+}
+
+/*
+ * <div> .modal
+ * 
+ * It is the frame of the modal. It has 2 flavors:
+ * - full size version of the desktop mockup. It is used for desktop, laptop,
+ *   and tablet 
+ * - donwsized version of the mobile mockup. It is used for mobile and small
+ *   tablet.
+ * Initialy it is not displayed (display: none) and its display is triggered by
+ * the click of the subcription button (managed by JavaScript code in modal.js).
+ * It includes 2 parts:
+ * - header: it is a common part of subcription and confimation window, and 
+ * includes only the quit icon to close the modal. It is always displayed, it is
+ * hidden when the modal iself is closed.
+ * - main: it includes the 2 exclusive parts subscription and confirmation.
+ *   Their display is managed by the JavaScript code in modal.js.
+ */
+.modal {
+  display: none;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: relative;
+  width: 100%;
+  background-color: #232323;
+  color: #FFFFFF;
+  /*
+ * <div> .header 
+ * 
+ * It include only the quit icon (&times character)
+ * The clik on the icon is managed by the JavaScript code in modal.js.
+ */
+}
+
+@media screen and (min-width: 768px) {
+  .modal {
+    width: 536px;
+    position: relative;
+    border-radius: 0.8rem;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .modal {
+    max-width: 460px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 0.8rem 0.8rem 0 0;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .modal_header {
+    height: 3.6rem;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .modal_header {
+    height: 3rem;
+  }
+}
+
+.modal_header_modal-quit-icon {
+  color: white;
+  text-decoration: none;
+  position: absolute;
+}
+
+@media screen and (min-width: 768px) {
+  .modal_header_modal-quit-icon {
+    top: 2.4rem;
+    right: 2.4rem;
+    font-size: 4.6rem;
+    line-height: 1.7rem;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .modal_header_modal-quit-icon {
+    top: 2rem;
+    right: 2rem;
+    font-size: 4rem;
+    line-height: 1.7rem;
+  }
+}
+
+.modal_header_modal-quit-icon:hover {
+  cursor: pointer;
+}
+
+.modal_main {
+  font-size: 0;
+}
+
+@media screen and (min-width: 768px) {
+  .modal_main {
+    padding-left: 3.9rem;
+    padding-right: 3.9rem;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .modal_main {
+    margin-left: 3rem;
+    margin-right: 3rem;
+  }
+}
+
+/*
+ * <div> .modal subcription 
+ * 
+ * It used to hide the subscription form.
+ * The display is managed by the JavaScript code in modal.js.
+ */
+.modal_subscription {
+  display: none;
+}
+
+/*
+ * <div> .subcription_form 
+ * 
+ * It includes all the subscription. it is the most complex part.
+ * 
+ */
+.subscription_form {
+  /**
+ * <class> subscription_form_label : used to format the <label> of the input
+ * fields.
+ * To be noted, for the number of tournament played, the label is different for
+ * desktop and mobile mockup. This is achieved by setting the label in the
+ * :before pseudo-element with an l=empty html content.
+**/
+  /**
+ * <class> subscription_form_input : used to format the textual input fields
+ * 
+**/
+  /**
+ * <class> subscription_form_error-message : used to format the error messages
+ * associated to each input fields
+ * 
+**/
+  /*
+ * <div> .subcription_form_input_location 
+ * 
+ * It includes all the elements necessary for the tournament location selection.
+ * 6 radio buttons are use after inhibition of their default behavior. The
+ * buttons cicles are created using :before and :after pseudo element borders of
+ * the label. :before is position:relative to have :after position absolute for
+ * centering of the 2 cirlces.
+ * They are sized according to the 2 mockup. When unchecked only the outer 
+ * circle is diplayed in grey, when check the 2 circles are displayed in green. 
+ * 
+ */
+  /**
+ * <class> subscription_form_input-checkbox : used to format the checkboxes 
+ * used for terms of use and next event notification
+ * associated to each input fields.
+ * When checked the check font-awesome icon is diplayed in white on green, 
+ * otherwise it is grey on grey (invisible).
+ * 
+**/
+  /*
+ * <div> .subcription_form_submit 
+ * 
+ * It includes the submit button of the form. The click one the button 
+ * 
+ */
+}
+
+.subscription_form_label {
+  display: block;
+  line-height: 1.4rem;
+  font-size: 1.4rem;
+  font-weight: 400;
+}
+
+@media screen and (min-width: 768px) {
+  .subscription_form_label {
+    margin-top: 0.8rem;
+  }
+  .subscription_form_label--played-tournament-number:before {
+    content: "À combien de tournois GameOn avez-vous déjà participé ?";
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .subscription_form_label {
+    margin-top: 0.6rem;
+  }
+  .subscription_form_label--played-tournament-number:before {
+    content: "À combien de tournois avez-vous déjà participé ?";
+  }
+}
+
+.subscription_form_input {
+  width: 100%;
+  border: 1px solid #C4C4C4;
+  border-radius: 0.8rem;
+  font-size: 1.8rem;
+  line-height: 1.8rem;
+  font-weight: 400;
+}
+
+@media screen and (min-width: 768px) {
+  .subscription_form_input {
+    margin-top: 0.7rem;
+    height: 6.4rem;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .subscription_form_input {
+    margin-top: 0.7rem;
+    height: 4rem;
+  }
+}
+
+.subscription_form_input:hover {
+  cursor: text;
+}
+
+.subscription_form_error-message {
+  margin-top: 0.2rem;
+  font-size: 1.1rem;
+  height: 1.1rem;
+  line-height: 1.1rem;
+  color: #FF4E60;
+}
+
+.subscription_form_input-location {
+  margin-top: 0.8rem;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.subscription_form_input-radio {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+}
+
+.subscription_form_input-radio:checked + label:before,
+.subscription_form_input-radio:checked + label:after {
+  border-color: #279E7A;
+}
+
+.subscription_form_input-radio_label {
+  position: relative;
+  font-size: 1.2rem;
+  line-height: 1.2rem;
+  font-weight: 400;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+@media screen and (min-width: 768px) {
+  .subscription_form_input-radio_label {
+    margin-top: 1.0rem;
+    margin-right: 2.8rem;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .subscription_form_input-radio_label {
+    margin-top: 0.6rem;
+    margin-right: 1.0rem;
+  }
+}
+
+.subscription_form_input-radio_label:hover {
+  cursor: pointer;
+}
+
+.subscription_form_input-radio_label:before {
+  content: "";
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  border: 0.1rem solid #C4C4C4;
+}
+
+@media screen and (min-width: 768px) {
+  .subscription_form_input-radio_label:before {
+    margin-right: 6px;
+    width: 26px;
+    height: 26px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .subscription_form_input-radio_label:before {
+    margin-right: 5px;
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.subscription_form_input-radio_label:after {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+}
+
+@media screen and (min-width: 768px) {
+  .subscription_form_input-radio_label:after {
+    border: 9px solid #232323;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .subscription_form_input-radio_label:after {
+    border: 6px solid #232323;
+  }
+}
+
+.subscription_form_input-checkbox {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+}
+
+.subscription_form_input-checkbox:checked + label > .subscription_form_input-checkbox_label_icon-check {
+  background-color: #279E7A;
+  color: #FFFFFF;
+}
+
+.subscription_form_input-checkbox_label {
+  margin-right: 1.4rem;
+  font-size: 1.2rem;
+  font-weight: 400;
+  display: inline-block;
+  position: relative;
+}
+
+@media screen and (min-width: 768px) {
+  .subscription_form_input-checkbox_label {
+    margin-top: 0.2rem;
+    line-height: 2.6rem;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .subscription_form_input-checkbox_label {
+    margin-top: 0.6rem;
+    line-height: 2rem;
+  }
+}
+
+.subscription_form_input-checkbox_label:hover {
+  cursor: pointer;
+}
+
+.subscription_form_input-checkbox_label_icon-check {
+  display: inline-block;
+  position: relative;
+  margin-right: 0.6rem;
+  border-radius: 6px;
+  background-color: #C4C4C4;
+  color: #C4C4C4;
+}
+
+@media screen and (min-width: 768px) {
+  .subscription_form_input-checkbox_label_icon-check {
+    width: 2.6rem;
+    height: 2.6rem;
+    font-size: 1.4rem;
+    padding-left: 6px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .subscription_form_input-checkbox_label_icon-check {
+    width: 2rem;
+    height: 2rem;
+    font-size: 1rem;
+    padding-left: 5px;
+  }
+}
+
+.subscription_form_submit {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+@media screen and (min-width: 768px) {
+  .subscription_form_submit {
+    margin-top: 1.6rem;
+    margin-bottom: 1.7rem;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .subscription_form_submit {
+    margin-top: 0.6rem;
+    margin-bottom: 2.2rem;
+  }
+}
+
+.subscription_form_submit_button {
+  font-size: 1.4rem;
+  font-weight: 500;
+  font-style: normal;
+  background-color: #FE142F;
+  color: #FFFFFF;
+  border-radius: 0.8rem;
+  border: none;
+}
+
+@media screen and (min-width: 768px) {
+  .subscription_form_submit_button {
+    padding: 11px 56px 11px 56px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .subscription_form_submit_button {
+    padding: 6px 35px 6px 35px;
+  }
+}
+
+.subscription_form_submit_button:hover {
+  cursor: pointer;
+}
+
+.has-error {
+  border-color: #FF4E60;
+}
+
+.modal_confirmation {
+  display: none;
+  width: 100%;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.modal_confirmation_content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+@media screen and (min-width: 768px) {
+  .modal_confirmation_content {
+    height: 74.6rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .modal_confirmation_content_message {
+    text-align: center;
+    font-size: 3.6rem;
+    line-height: 5.6rem;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .modal_confirmation_content {
+    height: 56rem;
+  }
+  .modal_confirmation_content_message {
+    text-align: center;
+    width: 28rem;
+    font-size: 3.6rem;
+    line-height: 5.6rem;
+    padding-bottom: 7rem;
+  }
+}
+
+.modal_confirmation_close {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.modal_confirmation_close_button {
+  font-size: 1.4rem;
+  font-weight: 500;
+  font-style: normal;
+  background-color: #FE142F;
+  color: #FFFFFF;
+  border-radius: 0.8rem;
+  border: none;
+}
+
+@media screen and (min-width: 768px) {
+  .modal_confirmation_close_button {
+    padding: 11px 56px 11px 56px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .modal_confirmation_close_button {
+    padding: 6px 35px 6px 35px;
+  }
+}
+
+.modal_confirmation_close_button:hover {
+  cursor: pointer;
+}
+/*# sourceMappingURL=style.css.map */
