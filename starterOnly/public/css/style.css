@@ -1,5 +1,8 @@
 @charset "UTF-8";
 /*                                                                            *
+ * root SCSS file include only import of the SCSS tree                        *
+ *                                                                            */
+/*                                                                            *
  * 2 main mixins:                                                             *
  * - one-line-menu to format nav menu for desktop                             *
  * - burger-menu($ratio) to format menu for mobile, small-table, tablet and   *
@@ -932,8 +935,11 @@ p {
   /*
  * <div> .subcription_form_submit 
  * 
- * It includes the submit button of the form. The click one the button 
- * 
+ * It includes the submit button of the form. The click on the button trigger
+ * the submit event that it catch by JavaScript code in modal.js to validate
+ * the form. The vlidaiton is process is described in modal.js
+ * The div and the button are sized according the 2 mockup.  
+ * The button is centered with display:flex justify-content:center
  */
 }
 
@@ -1204,10 +1210,24 @@ p {
   cursor: pointer;
 }
 
+/**
+ * <class> .has-error : subclass used to color the border in red of the input
+ * field (textual) when an error is dectected. The subclass is added/removed
+ * during the form validation process manage by JavaScript code in modal.js 
+ * when the sub class is absent the border is grey.
+ * 
+**/
 .has-error {
   border-color: #FF4E60;
 }
 
+/*
+ * <div> .modal_confirmation 
+ * 
+ * It includes the confirmation modal. Its display is managed by the JavaScript
+ * code in modal.js.
+ * The sizing is done according to the 2 mockup.
+ */
 .modal_confirmation {
   display: none;
   width: 100%;
@@ -1218,6 +1238,21 @@ p {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  /*
+ * <div> .modal_subscription_content : includes the confirmation message 
+ * 
+ * The sizing is done according to the 2 mockup.
+ */
+  /*
+ * <div> .modal_confirmation_close
+ * 
+ * It includes the close button of the confirmation form. The click on the
+ * triggers the closure of the modal as the quit icon of the header.
+ * The clisk iscatch by JavaScript code in modal.js.
+ * The div and the button are sized according the 2 mockup.  
+ * The button is centered with display:flex justify-content:center
+ * (very similar to subcription_form_submit)
+ */
 }
 
 .modal_confirmation_content {
@@ -1230,25 +1265,16 @@ p {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  /**
+ * <class> .modal_subscription_content_message :  used to format the
+ * confirmation message.
+ * 
+**/
 }
 
 @media screen and (min-width: 768px) {
   .modal_confirmation_content {
     height: 74.6rem;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-  }
-  .modal_confirmation_content_message {
-    text-align: center;
-    font-size: 3.6rem;
-    line-height: 5.6rem;
   }
 }
 
@@ -1256,12 +1282,17 @@ p {
   .modal_confirmation_content {
     height: 56rem;
   }
+}
+
+.modal_confirmation_content_message {
+  text-align: center;
+  font-size: 3.6rem;
+  line-height: 5.6rem;
+}
+
+@media screen and (max-width: 767px) {
   .modal_confirmation_content_message {
-    text-align: center;
     width: 28rem;
-    font-size: 3.6rem;
-    line-height: 5.6rem;
-    padding-bottom: 7rem;
   }
 }
 
@@ -1272,6 +1303,18 @@ p {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+}
+
+@media screen and (min-width: 768px) {
+  .modal_confirmation_close {
+    margin-bottom: 1.8rem;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .modal_confirmation_close {
+    margin-bottom: 2.1rem;
+  }
 }
 
 .modal_confirmation_close_button {

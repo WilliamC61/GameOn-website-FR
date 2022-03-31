@@ -240,7 +240,7 @@ function termsOfUseValidation() {
  *
  *   if the validation is OK
  *      the confirmation form is displayed in replacement of the
- *      subscription one
+ *      subscription one and the form is reset
  *  else
  *      the subcription form is kept displayed and user can see the error
  *      message(s) diplayed below the fied(s).
@@ -266,6 +266,8 @@ function subscriptionFormValidation(event) {
         modalSubscription.style.display = "none";
         const modalConfirmation = document.querySelector(".modal_confirmation");
         modalConfirmation.style.display = "flex";
+        const modalSubcriptionForm = document.querySelector("#subscription-form");
+        modalSubcriptionForm.reset();
     }
 }
 

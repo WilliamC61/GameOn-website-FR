@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
     <head>
         <meta charset="UTF-8">
         <!-- to use device logical viewport-->
@@ -20,14 +20,15 @@
     </head>
  
     <body>
-        <header id="top"> 
+        <!-- ──── header : includes logo and nav ───────────────────────────────────────────────── -->
+        <header> 
             <div class="header">
                 <img class="header_logo" src="public/img/logo/Logo.png" alt="Logo de GameOn" /> 
                 <nav class="header_top-nav">
                     <button class="header_top-nav_burger-menu-button"><i class="fas fa-bars"></i></button>
                     <div class="header_top-nav_burger-menu">
                         <ul class="header_top-nav_ul">
-                            <li class="header_top-nav_ul_li"><a class="header_top-nav_ul_li_a" href="#top">Détails de l’évènement</a></li><!--white spaces
+                            <li class="header_top-nav_ul_li"><a class="header_top-nav_ul_li_a" href="#">Détails de l’évènement</a></li><!--white spaces
                         --><li class="header_top-nav_ul_li"><a class="header_top-nav_ul_li_a" href="#">À Propos</a></li><!--white spaces
                         --><li class="header_top-nav_ul_li"><a class="header_top-nav_ul_li_a" href="#">Contact</a></li><!--white spaces
                         --><li class="header_top-nav_ul_li"><a class="header_top-nav_ul_li_a" href="#">Évènements passés</a></li>
@@ -36,6 +37,7 @@
                 </nav> 
             </div> 
         </header>
+        <!-- ──── main : includes picth and modal ───────────────────────────────────────────────── -->
         <main>
             <div class="pitch">
                 <div class="pitch_background">
@@ -49,11 +51,15 @@
                     </form>
                 </div>
             </div>
+            <!-- ──── modal-container : used to position and center the modal ────────────────────── -->
             <div class="modal-container">
+                <!-- ──── modal : frame of the modal ─────────────────────────────────────────────── -->
                 <div class="modal">
+                    <!-- ──── modal_header : includes the quit icon  ──────────────────────────────── -->
                     <div class="modal_header">
                         <a href="#" class="modal_header_modal-quit-icon">&times;</a>
                     </div>
+                    <!-- ──── modal_main : includes subcription and confirmation   ────────────────── -->
                     <div class="modal_main">
                         <div class="modal_subscription">
                             <!--
@@ -117,6 +123,7 @@
                                 </div>
                             </form>
                         </div>
+                        <!-- ──── modal_confirmation : includes confirmation message and close button ─ -->
                         <div class="modal_confirmation">
                             <div class="modal_confirmation_content">
                                 <p class="modal_confirmation_content_message">Merci pour votre inscription</p>
@@ -129,11 +136,14 @@
                 </div>
             </div> 
         </main>
+        <!-- ──── footer : copyright message  ──────────────────────────────── -->
         <footer class="footer">
             <p class="footer_copyright">Copyright 2014 - 2022, GameOn Inc.</p>
         </footer>
+        <!-- ──── lightbox : used to grey the body when modal is displayed. at the end to cover fully the body ── -->
         <div id="lightbox" class="lightbox">
         </div>
+        <!-- ──── JavaScript files loading  ──────────────────────────────── -->
         <script src="./menu.js"></script>
         <script src="./modal.js"></script>
     </body>
