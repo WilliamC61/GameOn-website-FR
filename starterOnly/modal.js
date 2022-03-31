@@ -291,7 +291,7 @@ function modalQuit() {
     const modal = document.querySelector(".modal");
     modal.style.display = "none";
     const lightbox = document.querySelector(".lightbox");
-    lightbox.style.visibility = "hidden";
+    lightbox.style.display = "none";
 }
 
 /**
@@ -305,7 +305,7 @@ function modalQuit() {
  */
 function subscriptionLaunch(event) {
     const lightbox = document.querySelector(".lightbox");
-    lightbox.style.visibility = "visible";
+    lightbox.style.display = "block";
     const modal = document.querySelector(".modal");
     modal.style.display = "flex";
     const modalSubscription = document.querySelector(".modal_subscription");

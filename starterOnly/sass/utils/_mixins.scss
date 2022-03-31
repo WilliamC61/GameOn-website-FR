@@ -1,13 +1,34 @@
+//==============================================================================
+/*                                                                            *
+ * 2 main mixins:                                                             *
+ * - one-line-menu to format nav menu for desktop                             *
+ * - burger-menu($ratio) to format menu for mobile, small-table, tablet and   *
+ * laptop                                                                     *
+ * The other mixin are used to encapsulate media query for the responsiveness *
+ *                                                                            */
+//==============================================================================
+
+
+
+//──────────────────────────────────────────────────────────────────────────────
+/*
+ * @mixin one-line-menu() : used for desktop nav menu
+ * The burger-menu icon is hidden
+ * The menu items are displayed as inline-block to have the menu on one
+ * line. The other formattings are the direct translation of the mockup.
+ */
+//──────────────────────────────────────────────────────────────────────────────
+
 @mixin one-line-menu {
     &_burger-menu-button{
-        display:none;
+        display:none; // to hide de burger-menu icon
     }
     &_ul {
         list-style: none;
-        display: inline-block;
+        margin: 0;
         vertical-align: bottom;
         &_li {
-            display: inline-block;
+            display: inline-block; // to insure one-line display
             &_a {
                 display: block;
                 text-decoration: none;
@@ -29,40 +50,57 @@
     }
 }
 
+//──────────────────────────────────────────────────────────────────────────────
+/*
+ * @mixin burger-menu($ratio) : used for mobile to laptop included screen size
+ * @param $ratio : used to size the menu
+ *
+ * The burger-menu icon is displayed and sized according to $ratio
+ * The burge-menu is kept hidden till click on the burger-menu icon. It is
+ * hidden back on the click on one of the menu items. This behavior ismanaged by
+ * JavaScript code in menu.js. 
+ * The menu items are displayed as block to have the menu on one column.
+ * Z-index:2 is used to have the menu on top of the other page conetent.
+ * The menu items are formatted whith the same spirit as the desktop mockup.
+ * They are sized according $ratio. A grey border is added around the menu.
+ * Top, bottom margins were added between the itmes to ease selection on mobile
+ * and kept for all screen sizes.
+ */
+//──────────────────────────────────────────────────────────────────────────────
+
 @mixin burger-menu ($ratio) {
     &_burger-menu-button {
         color: $color-red;
         background-color: $color-white;
         border: none;
-        font-size: $ratio*2rem;
-        display: inline-block;
+        font-size: $ratio*2rem; // size according $ratio
         &:hover {
             cursor: pointer;
         }
     }
     &_burger-menu {
-        z-index:2;
+        z-index:2; // to have menu over the page
         background-color: $color-white;
-        padding: $ratio*0.5*10px;
-        position: absolute;
-        top: $ratio*0.9*6rem;
-        right: 0;
-        border: 2px solid $color-grey;
+        padding: $ratio*0.5*10px; // padding according $ratio
+        position: absolute; // abolute position below the icon and at page right
+        top: $ratio*0.9*6rem; // vertical position according $ratio
+        right: 0; // menu at right side
+        border: 2px solid $color-grey; 
         border-radius: 8px;
-        visibility: hidden;
+        visibility: hidden; // menu kept hidden till click on icon
     }
     &_ul {
         list-style: none;
-        font-size: $ratio*0.9*1.4rem;
-        display: inline-block;
+        padding:0; // otherwise a 20px left padding is seen
         &_li {
-            display: block;
+            display: block; // display block to have one column display
             &_a {
                 display: block;
                 text-decoration: none;
-                font-size: $ratio*1.4rem;
+                font-size: $ratio*1.4rem; // font size according $ratio 
                 font-weight: 500;
-                padding: $ratio*4px $ratio*8px $ratio*4px $ratio*8px;
+                margin: 4px 0px 4px 0px; // margin between items to ease mobile selection
+                padding: $ratio*4px $ratio*8px $ratio*4px $ratio*8px; // padding according $ratio 
                 background-color: $color-white;
                 border-radius: 0.8rem;
                 &:visited, &:link {
@@ -78,13 +116,21 @@
     }    
 }
 
-//================================================================================
-/*              REsponsive categories vs breakpoints                            *
- *    mobile-bkpt            tablet-bkpt        laptop-bkpt     desktop-bkpt    *
- * mobile |        small-tablet    |      tablet     |     laptop    | desktop  *
- *                                                                              */
-//================================================================================
- @mixin mobile {
+//──────────────────────────────────────────────────────────────────────────────
+/*
+ * The below mixins help to implement media queries to target on screen type or
+ * range of screen type. their name are self explanatory.
+ * 
+ * Below you have the link between screen (responsive) categories and the
+ * breakpoints.
+ *
+ *    mobile-bkpt            tablet-bkpt        laptop-bkpt     desktop-bkpt
+ * mobile |        small-tablet    |      tablet     |     laptop    | desktop
+ *
+ */
+//──────────────────────────────────────────────────────────────────────────────
+
+@mixin mobile {
     @media screen and (max-width: ($mobile-breakpoint - 1)) {
         @content;
     }   
@@ -110,23 +156,26 @@
     }
 }
 
-@mixin desktop-or-laptop{
-    @media  screen and (min-width: $laptop-breakpoint) {
-        @content;
-    }
-}
-@mixin tablet-or-mobile{
-    @media  screen and (max-width: ($laptop-breakpoint - 1)) {
-        @content;
-    }
-}
-@mixin desktop-or-laptop-or-tablet{
-    @media  screen and (min-width: $tablet-breakpoint) {
-        @content;
-    }
-}
 @mixin mobile-or-small-tablet {
     @media screen and (max-width: ($tablet-breakpoint - 1)) {
         @content;
     } 
+}
+
+@mixin mobile-or-small-tablet-or-tablet-or-laptop {
+    @media  screen and (max-width: ($desktop-breakpoint - 1)) {
+        @content;
+    }
+}
+
+@mixin tablet-or-laptop-or-desktop{
+    @media  screen and (min-width: $tablet-breakpoint) {
+        @content;
+    }
+}
+
+@mixin laptop-or-desktop{
+    @media  screen and (min-width: $laptop-breakpoint) {
+        @content;
+    }
 }

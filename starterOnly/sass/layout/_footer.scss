@@ -1,8 +1,17 @@
+//==============================================================================
+/*                                                                            *
+ * footer : 2 flavors:                                                        *
+ * - for desktop, laptop and tablet the copyright is left justified           *
+ * - for small tablet and mobile it is centered                               *
+ * Roboto font is used.                                                       *
+ *                                                                            */
+//==============================================================================
+
 .footer {
-    @include desktop-or-laptop-or-tablet() {
+    @include tablet-or-laptop-or-desktop() {
         margin-top : 9rem;
-        @include desktop-or-laptop() {
-            margin-left: -6rem;
+        @include laptop-or-desktop() {
+            margin-left: -6rem; // to overide global body margin
         }  
         margin-bottom: 6rem;
     }
@@ -13,7 +22,7 @@
         color: $color-red;
         font-family: 'Roboto', sans-serif;
         font-weight: 500;
-        @include desktop-or-laptop-or-tablet() {
+        @include tablet-or-laptop-or-desktop() {
             font-size: 1.5rem;
         }
         @include mobile-or-small-tablet {

@@ -1,4 +1,10 @@
- //──── Reset ───────────────────────────────────────────────────────────────────
+//==============================================================================
+/*                                                                            *
+ * some global settings like reset, rem, and body margins                     *
+ *                                                                            */
+//==============================================================================
+
+//──── Reset ──────────────────────────────────────────────────────────────────
 *,
 *::after,
 *::before {
@@ -7,17 +13,17 @@
     box-sizing: inherit;
 }
 
-//──── to have 1rem = 10px ─────────────────────────────────────────────────────
+//──── to have 1rem = 10px ────────────────────────────────────────────────────
 html {
     // 10px div by def of 16px
     font-size: 62.5%;
 }
 
-//──── Page side margin definition for all screen sizes ──────────────────────── 
+//──── Page margin and background color definition for all screen sizes ─────── 
 body {
     box-sizing: border-box;
     background: $color-white;
-    @include desktop-or-laptop () {
+    @include laptop-or-desktop () {
         margin-left: 100px;
         margin-right:100px;
     }
@@ -34,6 +40,4 @@ body {
         margin-left:30px;
         margin-right:30px;
     }
-    
-    
 }

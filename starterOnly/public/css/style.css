@@ -1,18 +1,46 @@
 @charset "UTF-8";
+/*                                                                            *
+ * 2 main mixins:                                                             *
+ * - one-line-menu to format nav menu for desktop                             *
+ * - burger-menu($ratio) to format menu for mobile, small-table, tablet and   *
+ * laptop                                                                     *
+ * The other mixin are used to encapsulate media query for the responsiveness *
+ *                                                                            */
 /*
-//──── spinner animations ─────────────────────────────────────────────────────
-$loading-spinner-size: 250px;
-$loading-spinner-circle-thikness: 5px;
-$loading-spinner-duration: 3s;
-
-//──── checkmark-anim-duration ─────────────────────────────────────────────────
-$checkmark-anim-duration: 400ms
-
-*/
-/*              REsponsive categories vs breakpoints                            *
- *    mobile-bkpt            tablet-bkpt        laptop-bkpt     desktop-bkpt    *
- * mobile |        small-tablet    |      tablet     |     laptop    | desktop  *
- *                                                                              */
+ * @mixin one-line-menu() : used for desktop nav menu
+ * The burger-menu icon is hidden
+ * The menu items are displayed as inline-block to have the menu on one
+ * line. The other formattings are the direct translation of the mockup.
+ */
+/*
+ * @mixin burger-menu($ratio) : used for mobile to laptop included screen size
+ * @param $ratio : used to size the menu
+ *
+ * The burger-menu icon is displayed and sized according to $ratio
+ * The burge-menu is kept hidden till click on the burger-menu icon. It is
+ * hidden back on the click on one of the menu items. This behavior ismanaged by
+ * JavaScript code in menu.js. 
+ * The menu items are displayed as block to have the menu on one column.
+ * Z-index:2 is used to have the menu on top of the other page conetent.
+ * The menu items are formatted whith the same spirit as the desktop mockup.
+ * They are sized according $ratio. A grey border is added around the menu.
+ * Top, bottom margins were added between the itmes to ease selection on mobile
+ * and kept for all screen sizes.
+ */
+/*
+ * The below mixins help to implement media queries to target on screen type or
+ * range of screen type. their name are self explanatory.
+ * 
+ * Below you have the link between screen (responsive) categories and the
+ * breakpoints.
+ *
+ *    mobile-bkpt            tablet-bkpt        laptop-bkpt     desktop-bkpt
+ * mobile |        small-tablet    |      tablet     |     laptop    | desktop
+ *
+ */
+/*                                                                            *
+ * some global settings like reset, rem, and body margins                     *
+ *                                                                            */
 *,
 *::after,
 *::before {
@@ -60,6 +88,9 @@ body {
   }
 }
 
+/*                                                                            *
+ *            default font configuration for body h1, h2, h3 and p            *
+ *                                                                            */
 body {
   font-family: 'DM Sans', sans-serif;
   color: #232323;
@@ -100,9 +131,17 @@ p {
 }
 
 /*                                                                            *
- *                                   header                                   *
- *  row flexbox including logo and nav                                        *
- *  geometry defined with % and vh to adjust full page fit on screen          *
+ * header                                                                     *
+ *                                                                            *
+ * It's arow flexbox including logo and nav                                   *
+ * The height is customized depending on the screen size and logo is sized    *
+ * accordingly.                                                               *
+ * For desktop, the logo and the one-line menu is aligned to the bottom of    *
+ * header, for the other screen sizes burger menu is displayed in an absolute *
+ * position.                                                                  *
+ * The nav menus is formatted using the 2 mixin on-line-menu and burger-menu. *
+ * Burger-menu has a retio parameter to size the menu depending on the screen *
+ * size.                                                                      * 
  *                                                                            */
 .header {
   display: -webkit-box;
@@ -117,47 +156,47 @@ p {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
 }
 
 @media (min-width: 1200px) {
   .header {
     height: 10rem;
-    padding-top: 5rem;
     -webkit-box-align: end;
         -ms-flex-align: end;
             align-items: flex-end;
   }
 }
 
+@media screen and (max-width: 1199px) {
+  .header {
+    position: relative;
+  }
+}
+
 @media screen and (min-width: 992px) and (max-width: 1199px) {
   .header {
-    height: 10rem;
-    padding-top: 5rem;
-    position: relative;
+    height: 9rem;
   }
 }
 
 @media screen and (min-width: 768px) and (max-width: 991px) {
   .header {
-    height: 9rem;
-    padding-top: 4rem;
-    position: relative;
+    height: 8rem;
   }
 }
 
 @media screen and (min-width: 576px) and (max-width: 767px) {
   .header {
-    height: 8rem;
-    padding-top: 3rem;
-    position: relative;
+    height: 7rem;
   }
 }
 
 @media screen and (max-width: 575px) {
   .header {
-    height: 8rem;
-    padding-top: 3rem;
-    position: relative;
+    height: 5rem;
   }
 }
 
@@ -169,13 +208,13 @@ p {
 
 @media screen and (min-width: 992px) and (max-width: 1199px) {
   .header_logo {
-    height: 5rem;
+    height: 4.5rem;
   }
 }
 
 @media screen and (min-width: 768px) and (max-width: 991px) {
   .header_logo {
-    height: 4rem;
+    height: 4 rem;
   }
 }
 
@@ -198,7 +237,7 @@ p {
   }
   .header_top-nav_ul {
     list-style: none;
-    display: inline-block;
+    margin: 0;
     vertical-align: bottom;
   }
   .header_top-nav_ul_li {
@@ -230,7 +269,6 @@ p {
     background-color: #FFFFFF;
     border: none;
     font-size: 5.2rem;
-    display: inline-block;
   }
   .header_top-nav_burger-menu-button:hover {
     cursor: pointer;
@@ -248,8 +286,7 @@ p {
   }
   .header_top-nav_ul {
     list-style: none;
-    font-size: 3.276rem;
-    display: inline-block;
+    padding: 0;
   }
   .header_top-nav_ul_li {
     display: block;
@@ -259,6 +296,7 @@ p {
     text-decoration: none;
     font-size: 3.64rem;
     font-weight: 500;
+    margin: 4px 0px 4px 0px;
     padding: 10.4px 20.8px 10.4px 20.8px;
     background-color: #FFFFFF;
     border-radius: 0.8rem;
@@ -280,7 +318,6 @@ p {
     background-color: #FFFFFF;
     border: none;
     font-size: 4rem;
-    display: inline-block;
   }
   .header_top-nav_burger-menu-button:hover {
     cursor: pointer;
@@ -298,8 +335,7 @@ p {
   }
   .header_top-nav_ul {
     list-style: none;
-    font-size: 2.52rem;
-    display: inline-block;
+    padding: 0;
   }
   .header_top-nav_ul_li {
     display: block;
@@ -309,6 +345,7 @@ p {
     text-decoration: none;
     font-size: 2.8rem;
     font-weight: 500;
+    margin: 4px 0px 4px 0px;
     padding: 8px 16px 8px 16px;
     background-color: #FFFFFF;
     border-radius: 0.8rem;
@@ -330,7 +367,6 @@ p {
     background-color: #FFFFFF;
     border: none;
     font-size: 3rem;
-    display: inline-block;
   }
   .header_top-nav_burger-menu-button:hover {
     cursor: pointer;
@@ -348,8 +384,7 @@ p {
   }
   .header_top-nav_ul {
     list-style: none;
-    font-size: 1.89rem;
-    display: inline-block;
+    padding: 0;
   }
   .header_top-nav_ul_li {
     display: block;
@@ -359,6 +394,7 @@ p {
     text-decoration: none;
     font-size: 2.1rem;
     font-weight: 500;
+    margin: 4px 0px 4px 0px;
     padding: 6px 12px 6px 12px;
     background-color: #FFFFFF;
     border-radius: 0.8rem;
@@ -380,7 +416,6 @@ p {
     background-color: #FFFFFF;
     border: none;
     font-size: 2rem;
-    display: inline-block;
   }
   .header_top-nav_burger-menu-button:hover {
     cursor: pointer;
@@ -398,8 +433,7 @@ p {
   }
   .header_top-nav_ul {
     list-style: none;
-    font-size: 1.26rem;
-    display: inline-block;
+    padding: 0;
   }
   .header_top-nav_ul_li {
     display: block;
@@ -409,6 +443,7 @@ p {
     text-decoration: none;
     font-size: 1.4rem;
     font-weight: 500;
+    margin: 4px 0px 4px 0px;
     padding: 4px 8px 4px 8px;
     background-color: #FFFFFF;
     border-radius: 0.8rem;
@@ -424,6 +459,12 @@ p {
   }
 }
 
+/*                                                                            *
+ * footer : 2 flavors:                                                        *
+ * - for desktop, laptop and tablet the copyright is left justified           *
+ * - for small tablet and mobile it is centered                               *
+ * Roboto font is used.                                                       *
+ *                                                                            */
 @media screen and (min-width: 768px) {
   .footer {
     margin-top: 9rem;
@@ -463,11 +504,32 @@ p {
   }
 }
 
-/* 
-@import "./layout/nav";
-@import "./layout/container";
-@import "./layout/form";
-*/
+/*                                                                            *
+ * index.scss : main sass file for the welcome page                           *
+ * 2 main parts:                                                              *
+ * - pitch for the welcome page itself                                        *
+ * - modal for the modal window. It includes 3 parts:                         *
+ *   o a header                                                               *
+ *   o the subcription form                                                   *
+ *   o the confirmation form                                                  *
+ * The diaply of the different part and the form validation are manage by the *
+ *                                                                            */
+/*
+ * <div> pitch
+ * For desktop, laptop and tablet title subtitle and subscription button are 
+ * displayed over the picture with a black box left size to have box + 
+ * background image covering the page width.
+ * This is obtained by using a black background for the div pitch (z-index:0)
+ * and setting the image with an aboslute position to the upper rigt corner
+ * with same height as the pitch div.
+ * The title, subtitle and button are displayed sequentially with z-index:1
+ * to be over the image even if coming before in the display flow.
+ * To have a better look some sizing adapation are done for laptop and tablet
+ * vs the pure desktop mockup.   
+ * for mobile and small-tablet, a centered display is done: title, subtitle, 
+ * background image and subscription button are displayed sequentially asin the
+ * html, and the sccss is common.
+ */
 .pitch {
   border-radius: 8px;
 }
@@ -486,7 +548,7 @@ p {
 
 @media screen and (max-width: 767px) {
   .pitch {
-    margin-top: 0;
+    margin-top: 3rem;
     background-color: #FFFFFF;
   }
 }
@@ -630,9 +692,17 @@ p {
   cursor: pointer;
 }
 
+/*
+ * <div> lightbox
+ * 
+ * It is used to cover all the page body when the modal window is displayed.
+ * It is declared at the end of the body to actually cover everything.
+ * It is displayed on the click on the suvscirption button and close when the
+ * modal window is closed. This is managed by the JavaScript code in modal.js.
+ * z-index:1 is used to cover the text of the pitch div.
+ */
 .lightbox {
-  visibility: hidden;
-  display: block;
+  display: none;
   position: fixed;
   top: 0;
   left: 0;
@@ -642,9 +712,16 @@ p {
   z-index: 1;
 }
 
+/*
+ * <div> .modal_container
+ * 
+ * It is used to position the modal window below the header and to center it on
+ * the page width. It is always displayed as when the modal is not displayed it
+ * is empty.
+ * z-index:2 to be over the lightbox (z-index:1 and come later in the flow)
+ */
 .modal-container {
   position: absolute;
-  top: 0;
   left: 0;
   z-index: 2;
   width: 100%;
@@ -656,6 +733,53 @@ p {
           justify-content: center;
 }
 
+@media (min-width: 1200px) {
+  .modal-container {
+    top: 10rem;
+  }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+  .modal-container {
+    top: 9rem;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  .modal-container {
+    top: 8rem;
+  }
+}
+
+@media screen and (min-width: 576px) and (max-width: 767px) {
+  .modal-container {
+    top: 7rem;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .modal-container {
+    top: 5rem;
+  }
+}
+
+/*
+ * <div> .modal
+ * 
+ * It is the frame of the modal. It has 2 flavors:
+ * - full size version of the desktop mockup. It is used for desktop, laptop,
+ *   and tablet 
+ * - donwsized version of the mobile mockup. It is used for mobile and small
+ *   tablet.
+ * Initialy it is not displayed (display: none) and its display is triggered by
+ * the click of the subcription button (managed by JavaScript code in modal.js).
+ * It includes 2 parts:
+ * - header: it is a common part of subcription and confimation window, and 
+ * includes only the quit icon to close the modal. It is always displayed, it is
+ * hidden when the modal iself is closed.
+ * - main: it includes the 2 exclusive parts subscription and confirmation.
+ *   Their display is managed by the JavaScript code in modal.js.
+ */
 .modal {
   display: none;
   -webkit-box-orient: vertical;
@@ -667,16 +791,19 @@ p {
           justify-content: center;
   position: relative;
   width: 100%;
-  z-index: 2;
   background-color: #232323;
   color: #FFFFFF;
+  /*
+ * <div> .header 
+ * 
+ * It include only the quit icon (&times character)
+ * The clik on the icon is managed by the JavaScript code in modal.js.
+ */
 }
 
 @media screen and (min-width: 768px) {
   .modal {
-    margin-top: 7.5rem;
     width: 536px;
-    height: 85rem;
     position: relative;
     border-radius: 0.8rem;
   }
@@ -684,9 +811,7 @@ p {
 
 @media screen and (max-width: 767px) {
   .modal {
-    margin-top: 7.6rem;
     max-width: 460px;
-    height: 659px;
     margin-left: auto;
     margin-right: auto;
     border-radius: 0.8rem 0.8rem 0 0;
@@ -751,8 +876,65 @@ p {
   }
 }
 
+/*
+ * <div> .modal subcription 
+ * 
+ * It used to hide the subscription form.
+ * The display is managed by the JavaScript code in modal.js.
+ */
 .modal_subscription {
   display: none;
+}
+
+/*
+ * <div> .subcription_form 
+ * 
+ * It includes all the subscription. it is the most complex part.
+ * 
+ */
+.subscription_form {
+  /**
+ * <class> subscription_form_label : used to format the <label> of the input
+ * fields.
+ * To be noted, for the number of tournament played, the label is different for
+ * desktop and mobile mockup. This is achieved by setting the label in the
+ * :before pseudo-element with an l=empty html content.
+**/
+  /**
+ * <class> subscription_form_input : used to format the textual input fields
+ * 
+**/
+  /**
+ * <class> subscription_form_error-message : used to format the error messages
+ * associated to each input fields
+ * 
+**/
+  /*
+ * <div> .subcription_form_input_location 
+ * 
+ * It includes all the elements necessary for the tournament location selection.
+ * 6 radio buttons are use after inhibition of their default behavior. The
+ * buttons cicles are created using :before and :after pseudo element borders of
+ * the label. :before is position:relative to have :after position absolute for
+ * centering of the 2 cirlces.
+ * They are sized according to the 2 mockup. When unchecked only the outer 
+ * circle is diplayed in grey, when check the 2 circles are displayed in green. 
+ * 
+ */
+  /**
+ * <class> subscription_form_input-checkbox : used to format the checkboxes 
+ * used for terms of use and next event notification
+ * associated to each input fields.
+ * When checked the check font-awesome icon is diplayed in white on green, 
+ * otherwise it is grey on grey (invisible).
+ * 
+**/
+  /*
+ * <div> .subcription_form_submit 
+ * 
+ * It includes the submit button of the form. The click one the button 
+ * 
+ */
 }
 
 .subscription_form_label {
@@ -817,6 +999,8 @@ p {
 
 .subscription_form_input-location {
   margin-top: 0.8rem;
+  margin-left: 0;
+  margin-right: 0;
 }
 
 .subscription_form_input-radio {
@@ -831,24 +1015,25 @@ p {
 }
 
 .subscription_form_input-radio_label {
-  margin-right: 2.8rem;
+  position: relative;
   font-size: 1.2rem;
   line-height: 1.2rem;
   font-weight: 400;
   display: inline-block;
   vertical-align: middle;
-  position: relative;
 }
 
 @media screen and (min-width: 768px) {
   .subscription_form_input-radio_label {
-    margin-bottom: 1.0rem;
+    margin-top: 1.0rem;
+    margin-right: 2.8rem;
   }
 }
 
 @media screen and (max-width: 767px) {
   .subscription_form_input-radio_label {
-    margin-bottom: 0.6rem;
+    margin-top: 0.6rem;
+    margin-right: 1.0rem;
   }
 }
 
@@ -859,16 +1044,17 @@ p {
 .subscription_form_input-radio_label:before {
   content: "";
   display: inline-block;
+  position: relative;
   vertical-align: middle;
   top: 0;
   left: 0;
   border-radius: 50%;
   border: 0.1rem solid #C4C4C4;
-  margin-right: 6px;
 }
 
 @media screen and (min-width: 768px) {
   .subscription_form_input-radio_label:before {
+    margin-right: 6px;
     width: 26px;
     height: 26px;
   }
@@ -876,6 +1062,7 @@ p {
 
 @media screen and (max-width: 767px) {
   .subscription_form_input-radio_label:before {
+    margin-right: 5px;
     width: 20px;
     height: 20px;
   }
@@ -980,6 +1167,7 @@ p {
 @media screen and (min-width: 768px) {
   .subscription_form_submit {
     margin-top: 1.6rem;
+    margin-bottom: 1.7rem;
   }
 }
 

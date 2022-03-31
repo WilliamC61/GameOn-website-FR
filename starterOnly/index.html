@@ -41,7 +41,7 @@
                 <div class="pitch_background">
                     <h1 class="title">Marathon national de jeux vidéos</h1>
                     <h2 class="subtitle">Vous aimez jouer ? Notre prochain évènement gaming est ouvert aux réservations... Places limitées !</h2>
-                        <img class="background-picture" src="./public/img/background/bg_img.jpg" alt="photo d'une gameuse de dos">
+                    <img class="background-picture" src="./public/img/background/bg_img.jpg" alt="photo d'une gameuse de dos">
                 </div>
                 <div class="subscription-launch">
                     <form>
@@ -56,24 +56,33 @@
                     </div>
                     <div class="modal_main">
                         <div class="modal_subscription">
+                            <!--
+                            //──── subscription form ───────────────────────────────────────────────────────
+                            --> 
                             <form id="subscription-form" name="subscription_form" action="index.html" method="post">
+                                <!-- ──── firstname ───────────────────────────────────────────────── -->
                                 <label class="subscription_form_label" for="firstname">Prénom</label>
                                 <input class="subscription_form_input" type="text" id="firstname" name="firstname">
                                 <p class="subscription_form_error-message --firstname"></p>
+                                <!-- ──── name ────────────────────────────────────────────────────── -->
                                 <label class="subscription_form_label" for="name">Nom</label>
                                 <input class="subscription_form_input" type="text" id="name" name="name">
                                 <p class="subscription_form_error-message --name"></p>
+                                <!-- ──── email ───────────────────────────────────────────────────── -->
                                 <label class="subscription_form_label" for="email">E-mail</label>
                                 <input class="subscription_form_input" type="email" id="email" name="email">
                                 <p class="subscription_form_error-message --email"></p>
+                                <!-- ──── date of birth ───────────────────────────────────────────── -->
                                 <label class="subscription_form_label" for="date-of-birth">Date de naissance</label>
                                 <input class="subscription_form_input" type="date" id="date-of-birth" name="date-of-birth">
                                 <p class="subscription_form_error-message --date-of-birth"></p>
+                                <!-- ──── palyed-tournament-number ────────────────────────────────── -->
                                 <label class="subscription_form_label subscription_form_label--played-tournament-number" for="played-tournament-number"></label>
                                 <input class="subscription_form_input" type="number" min="0" max="20" id="played-tournament-number" name="played-tournament-nb">
                                 <p class="subscription_form_error-message --played-tournament-number"></p>
-                                <p class="subscription_form_label">A quel tournoi souhaitez-vous participer cette année ?</p>
+                                <!-- ──── location ────────────────────────────────────────────────── -->
                                 <div class="subscription_form_input-location">
+                                    <p class="subscription_form_label">A quel tournoi souhaitez-vous participer cette année ?</p>
                                     <input class="subscription_form_input-radio" type="radio" id="location1" name="tournament-location" value="new-york">
                                     <label class="subscription_form_input-radio_label" for="location1">New York</label>
                                     <input class="subscription_form_input-radio" type="radio" id="location2" name="tournament-location" value="san-francisco">
@@ -88,18 +97,21 @@
                                     <label class="subscription_form_input-radio_label" for="location6">Portland</label>
                                     <p class="subscription_form_error-message --input-location"></p>
                                 </div>
+                                <!-- ──── terms of use ───────────────────────────────────────────── -->
                                 <div>
-                                    <input class="subscription_form_input-checkbox" type="checkbox" id="terms-of-use" name="conditions-of-use"  checked>
+                                    <input class="subscription_form_input-checkbox" type="checkbox" id="terms-of-use" name="terms-of-use" checked>
                                     <label class="subscription_form_input-checkbox_label" for="terms-of-use">
                                         <span class="subscription_form_input-checkbox_label_icon-check"><i class="fas fa-check"></i></span>J'ai lu et accepté les conditions d'utilisation.</label>
-                                        <p class="subscription_form_error-message --terms-of-use"></p>
+                                    <p class="subscription_form_error-message --terms-of-use"></p>
                                 </div>
+                                <!-- ──── next-event-notificaiton ─────────────────────────────────── -->
                                 <div>
                                     <input class="subscription_form_input-checkbox" type="checkbox" id="next-event-notification" name="next-event-notification">
                                     <label class="subscription_form_input-checkbox_label" for="next-event-notification">
                                         <span class="subscription_form_input-checkbox_label_icon-check"><i class="fas fa-check"></i></span>Je souhaite être prévenu·e des prochains évènements.</label>
                                     <p class="subscription_form_error-message --next-event-notification"></p>
                                 </div>
+                                <!-- ──── form submit button  ──────────────────────────────────────── -->
                                 <div class="subscription_form_submit">
                                     <input class="subscription_form_submit_button" type="submit" value="C’est parti">
                                 </div>

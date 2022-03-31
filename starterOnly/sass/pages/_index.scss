@@ -1,6 +1,41 @@
+
+//==============================================================================
+/*                                                                            *
+ * index.scss : main sass file for the welcome page                           *
+ * 2 main parts:                                                              *
+ * - pitch for the welcome page itself                                        *
+ * - modal for the modal window. It includes 3 parts:                         *
+ *   o a header                                                               *
+ *   o the subcription form                                                   *
+ *   o the confirmation form                                                  *
+ * The diaply of the different part and the form validation are manage by the *
+ *                                                                            */
+//==============================================================================
+
+
+
+//──────────────────────────────────────────────────────────────────────────────
+/*
+ * <div> pitch
+ * For desktop, laptop and tablet title subtitle and subscription button are 
+ * displayed over the picture with a black box left size to have box + 
+ * background image covering the page width.
+ * This is obtained by using a black background for the div pitch (z-index:0)
+ * and setting the image with an aboslute position to the upper rigt corner
+ * with same height as the pitch div.
+ * The title, subtitle and button are displayed sequentially with z-index:1
+ * to be over the image even if coming before in the display flow.
+ * To have a better look some sizing adapation are done for laptop and tablet
+ * vs the pure desktop mockup.   
+ * for mobile and small-tablet, a centered display is done: title, subtitle, 
+ * background image and subscription button are displayed sequentially asin the
+ * html, and the sccss is common.
+ */
+//──────────────────────────────────────────────────────────────────────────────
+
 .pitch {
     border-radius: 8px;
-    @include desktop-or-laptop-or-tablet() {
+    @include tablet-or-laptop-or-desktop() {
         margin-top: 8.5rem;
         height: 66rem;
         background-color: $color_black;
@@ -9,37 +44,37 @@
         position: relative;
     }
     @include mobile-or-small-tablet() {
-        margin-top: 0;
+        margin-top: 3rem;
         background-color: $color-white;
     }
 }
 .title {
     font-weight: 500;
-    @include desktop-or-laptop-or-tablet() {
+    @include tablet-or-laptop-or-desktop() {
         margin-left: 56px;
         position: relative;
         color: $color-white;
-        z-index:1;
-        @include desktop() {
+        z-index:1; // to be overt the picture
+        @include desktop() {  // direct use of desktop mockup
             margin-top: 5rem;
             width: 830px;
             line-height: 12.5rem;
             font-size: 9.6rem;
         }
-        @include laptop() {
+        @include laptop() { // downsizing for laptop
             margin-top: 6rem;
             width: 0.8*830px;
             line-height: 0.8*12.5rem;
             font-size: 0.8*9.6rem;
         }
-        @include tablet() {
+        @include tablet() { // downsizing for tablet
             margin-top: 11rem;
             width: 0.65*830px;
             line-height: 0.65*12.5rem;
             font-size: 0.65*9.6rem;
         }
     }
-    @include mobile-or-small-tablet() {
+    @include mobile-or-small-tablet() { // direct use of mobile mockup
         line-height: 5.2rem;
         font-size: 4rem;
         color: $color-black;
@@ -47,7 +82,7 @@
 }
 .subtitle {
     font-weight: 400;
-    @include desktop-or-laptop-or-tablet() {
+    @include tablet-or-laptop-or-desktop() { // direct use of desktop mockup
         margin-top: 7rem;
         margin-left: 56px;
         width: 425px;
@@ -56,50 +91,49 @@
         color: $color-white;
         font-size: 2.4rem;
     }
-    @include mobile-or-small-tablet() {
+    @include mobile-or-small-tablet() { // direct use of mobile mockup
         margin-top: 2.1rem;
         line-height: 1.7rem;
         font-size: 1.3rem;
     }
 }
 .background-picture {
-    @include desktop-or-laptop-or-tablet() {
-        height: 66rem;
+    @include tablet-or-laptop-or-desktop() { // following desktop mockup
+        height: 66rem;  // full height of the div
         position: absolute;
-        top:0;
-        right:0;
-        z-index: 0;
+        top:0; right:0; // upper right corner of the div
+        z-index: 0; // to be underneath the text and button
     }
-    @include mobile-or-small-tablet() {
+    @include mobile-or-small-tablet() { // following mobile mockup
         margin-top: 4.1rem;
-        width: 100%;
+        width: 100%;    // image after the text full page width
         border-radius: 8px;
     }
 }
 .subscription-launch {
-    @include mobile-or-small-tablet() {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
+    @include mobile-or-small-tablet() { // for mobile and small-tablet the
+        display: flex;                  // button is centered by configuring
+        flex-direction: row;            // the container div as flex with 
+        justify-content: center;        // centered content
     }
     &_button {
-        background-color: $color-red;
+        background-color: $color-red;  // use of the mockup commong part
         color: $color-white;
         border-radius: 0.8rem;
         border:none;
         font-family: 'DM Sans', sans-serif;
         font-weight: 500;
         font-style: normal;
-        @include desktop-or-laptop-or-tablet() {
+        @include tablet-or-laptop-or-desktop() { //desktop mockup sizing
             margin-top: 7rem;
             margin-left: 56px;
             padding: 11px 30px 11px 30px;
             display: inline-block;
             font-size: 2.5rem;
-            position: relative;
-            z-index: 1;
+            position: relative; // to have the button over the image both 
+            z-index: 1;         // position relative and z:index:1 are necessary
         }
-        @include mobile-or-small-tablet(){
+        @include mobile-or-small-tablet(){ // mobile mockup sizing
             margin-top: 2.6rem;
             padding: 7px 30px 7px 30px;
             font-size: 1.4rem;
@@ -110,100 +144,184 @@
     }
 }
 
+//──────────────────────────────────────────────────────────────────────────────
+/*
+ * <div> lightbox
+ * 
+ * It is used to cover all the page body when the modal window is displayed.
+ * It is declared at the end of the body to actually cover everything.
+ * It is displayed on the click on the suvscirption button and close when the
+ * modal window is closed. This is managed by the JavaScript code in modal.js.
+ * z-index:1 is used to cover the text of the pitch div.
+ */
+//──────────────────────────────────────────────────────────────────────────────
+
 .lightbox {
-    visibility: hidden; // made visible by JS
-    display: block;
+    //visibility: hidden; // made visible by JS
+    display: none; // initally the light box is not displayed
     position:fixed;
     top:0; left: 0;
     bottom: 0; right:0;
     background: rgba(196, 196, 196, .7);
-    z-index: 1;
-}
-// used to center modal, allways visible as when not to be seen it is empty.
-.modal-container {
-    position: absolute;
-    top:0; left: 0;
-    z-index:2;width:100%;
-    display: flex;
-    justify-content: center;
-    
+    z-index: 1; // to cover pitch text.
 }
 
+//──────────────────────────────────────────────────────────────────────────────
+/*
+ * <div> .modal_container
+ * 
+ * It is used to position the modal window below the header and to center it on
+ * the page width. It is always displayed as when the modal is not displayed it
+ * is empty.
+ * z-index:2 to be over the lightbox (z-index:1 and come later in the flow)
+ */
+//──────────────────────────────────────────────────────────────────────────────
+
+.modal-container {
+    position: absolute;
+    @include desktop() { // below the header, usind appropriate header height
+        top: $desktop-header-height;
+    }
+    @include laptop() {
+        top: $laptop-header-height;
+    }
+    @include tablet() {
+        top: $tablet-header-height;
+    }
+    @include small-tablet() {
+        top: $small-tablet-header-height;
+    }
+    @include mobile() {
+        top: $mobile-header-height;
+    }
+    left: 0;
+    z-index:2; // to be over the lightbox
+    width:100%;                     // to have the modal
+    display: flex;                  // window centered on
+    justify-content: center;        // the page width
+ }
+
+//──────────────────────────────────────────────────────────────────────────────
+/*
+ * <div> .modal
+ * 
+ * It is the frame of the modal. It has 2 flavors:
+ * - full size version of the desktop mockup. It is used for desktop, laptop,
+ *   and tablet 
+ * - donwsized version of the mobile mockup. It is used for mobile and small
+ *   tablet.
+ * Initialy it is not displayed (display: none) and its display is triggered by
+ * the click of the subcription button (managed by JavaScript code in modal.js).
+ * It includes 2 parts:
+ * - header: it is a common part of subcription and confimation window, and 
+ * includes only the quit icon to close the modal. It is always displayed, it is
+ * hidden when the modal iself is closed.
+ * - main: it includes the 2 exclusive parts subscription and confirmation.
+ *   Their display is managed by the JavaScript code in modal.js.
+ */
+//──────────────────────────────────────────────────────────────────────────────
 .modal {
     display:none; // made flex by JS
     flex-direction:column;
     justify-content: center;
     position: relative;
     width:100%;
-    z-index:2;
     background-color: $color-black;
     color: $color-white;
-    @include desktop-or-laptop-or-tablet() {
-        margin-top: 7.5rem;
+    @include tablet-or-laptop-or-desktop() { // desktop sizing
         width: 536px;
-        height: 85rem;
         position: relative;
         border-radius: 0.8rem;
     }
-    @include mobile-or-small-tablet() {
-        margin-top: 7.6rem;
+    @include mobile-or-small-tablet() { // mobile sizing
         max-width: 460px;
-        height: 659px;
         margin-left: auto;
         margin-right: auto;
         border-radius: 0.8rem 0.8rem 0 0;
     }   
+//──────────────────────────────────────────────────────────────────────────────
+/*
+ * <div> .header 
+ * 
+ * It include only the quit icon (&times character)
+ * The clik on the icon is managed by the JavaScript code in modal.js.
+ */
+//──────────────────────────────────────────────────────────────────────────────
     &_header {
-        @include desktop-or-laptop-or-tablet() {
+        @include tablet-or-laptop-or-desktop() { // desktop sizing
             height: 3.6rem;
         }
-        @include mobile-or-small-tablet() {
+        @include mobile-or-small-tablet() { // mobile sizing
             height: 3rem;
         }
         &_modal-quit-icon {
             color:white;
             text-decoration: none;
             position: absolute;
-            @include desktop-or-laptop-or-tablet() {
+            @include tablet-or-laptop-or-desktop() { // desktop sizing
                 top: 2.4rem;
                 right: 2.4rem;
                 font-size: 4.6rem;
                 line-height: 1.7rem;
             }
-            @include mobile-or-small-tablet() {
+            @include mobile-or-small-tablet() { // mobile sizing
                 top: 2rem;
                 right: 2rem;
                 font-size: 4rem;
                 line-height: 1.7rem;
             }
             &:hover {
-                cursor: pointer;
+                cursor: pointer; // to indicate iteractivity of the icon
             }
         }
     }
     &_main {
         font-size: 0; // to avaoid white spaces
-        @include desktop-or-laptop-or-tablet() {
+        @include tablet-or-laptop-or-desktop() { //desktop sizing
             padding-left: 3.9rem;  
             padding-right: 3.9rem;    
         }
-        @include mobile-or-small-tablet() {
+        @include mobile-or-small-tablet() { // mobile sizing
             margin-left: 3rem;
             margin-right: 3rem;
         }
     }
 }
+//──────────────────────────────────────────────────────────────────────────────
+/*
+ * <div> .modal subcription 
+ * 
+ * It used to hide the subscription form.
+ * The display is managed by the JavaScript code in modal.js.
+ */
+//──────────────────────────────────────────────────────────────────────────────
+
 .modal_subscription {
-    display: none;
+    display: none; // become flex by JS
 }
+//──────────────────────────────────────────────────────────────────────────────
+/*
+ * <div> .subcription_form 
+ * 
+ * It includes all the subscription. it is the most complex part.
+ * 
+ */
+//──────────────────────────────────────────────────────────────────────────────
 
 .subscription_form {
+/**
+ * <class> subscription_form_label : used to format the <label> of the input
+ * fields.
+ * To be noted, for the number of tournament played, the label is different for
+ * desktop and mobile mockup. This is achieved by setting the label in the
+ * :before pseudo-element with an l=empty html content.
+**/
     &_label {
         display: block;
         line-height: 1.4rem;
         font-size: 1.4rem;
         font-weight: 400;
-        @include desktop-or-laptop-or-tablet {
+        @include tablet-or-laptop-or-desktop { // desktop sizing and label w/ GameOn
             margin-top: 0.8rem;
             &--played-tournament-number:before {
                 content: "À combien de tournois GameOn avez-vous déjà participé ?"
@@ -211,11 +329,15 @@
         }
         @include mobile-or-small-tablet {
             margin-top: 0.6rem;
-            &--played-tournament-number:before {
+            &--played-tournament-number:before { // mobile sizing and label w/o GameOn
                 content: "À combien de tournois avez-vous déjà participé ?"
             }
         }
     }
+/**
+ * <class> subscription_form_input : used to format the textual input fields
+ * 
+**/
     &_input {
         width:100%;
         border: 1px solid #C4C4C4;
@@ -223,18 +345,23 @@
         font-size: 1.8rem;
         line-height: 1.8rem;
         font-weight: 400;
-        @include desktop-or-laptop-or-tablet {
+        @include tablet-or-laptop-or-desktop { // desktop sizing
             margin-top: 0.7rem;
             height: 6.4rem;
         }
-        @include mobile-or-small-tablet {
+        @include mobile-or-small-tablet { // mobile sizing
             margin-top: 0.7rem;
             height: 4rem;
         }
         &:hover {
-            cursor: text;
+            cursor: text; // to indicate interactivity of the field
         }
     }
+/**
+ * <class> subscription_form_error-message : used to format the error messages
+ * associated to each input fields
+ * 
+**/
     &_error-message {
         margin-top: 0.2rem;
         font-size: 1.1rem;
@@ -242,28 +369,44 @@
         line-height: 1.1rem;
         color: $color-warning;
     }
+//──────────────────────────────────────────────────────────────────────────────
+/*
+ * <div> .subcription_form_input_location 
+ * 
+ * It includes all the elements necessary for the tournament location selection.
+ * 6 radio buttons are use after inhibition of their default behavior. The
+ * buttons cicles are created using :before and :after pseudo element borders of
+ * the label. :before is position:relative to have :after position absolute for
+ * centering of the 2 cirlces.
+ * They are sized according to the 2 mockup. When unchecked only the outer 
+ * circle is diplayed in grey, when check the 2 circles are displayed in green. 
+ * 
+ */
+//──────────────────────────────────────────────────────────────────────────────
     &_input-location{
         margin-top: 0.8rem;
+        margin-left: 0; margin-right:0;
     }
     &_input-radio{
-        appearance: none;
+        appearance: none; // to inhibate default beavior/appearence
         &:checked + label:before,
         &:checked + label:after {
-            border-color: $color-green; 
+            border-color: $color-green; // check => 2 green circles displayed 
         }
         &_label {
-            margin-right: 2.8rem;
+            position: relative;
             font-size: 1.2rem;
             line-height: 1.2rem;
             font-weight: 400;
             display: inline-block;
             vertical-align: middle;
-            position: relative;
-            @include desktop-or-laptop-or-tablet {
-                margin-bottom: 1.0rem;
+            @include tablet-or-laptop-or-desktop { // desktop sizing
+                margin-top: 1.0rem;
+                margin-right: 2.8rem;
             }
-            @include mobile-or-small-tablet {
-                margin-bottom: 0.6rem;
+            @include mobile-or-small-tablet { // mobile sizing
+                margin-top: 0.6rem;
+                margin-right: 1.0rem;
             }    
             &:hover {
                 cursor: pointer;
@@ -271,17 +414,19 @@
             &:before {
                 content: "";
                 display: inline-block;
+                position: relative;
                 vertical-align: middle;
                 top: 0; 
                 left: 0;
                 border-radius: 50%;
                 border:  0.1rem solid $color-grey;
-                margin-right: 6px;
-                @include desktop-or-laptop-or-tablet() {
+                @include tablet-or-laptop-or-desktop() { //desktop sizing
+                    margin-right: 6px;
                     width: 26px;
                     height: 26px;
                 }
-                @include mobile-or-small-tablet() {
+                @include mobile-or-small-tablet() { // mobile sizing
+                    margin-right: 5px;
                     width: 20px;
                     height: 20px;
                 }
@@ -295,15 +440,23 @@
                 width: 0;
                 height: 0;
                 border-radius: 50%;
-                @include desktop-or-laptop-or-tablet() {
+                @include tablet-or-laptop-or-desktop() { // desktop sizing
                     border:  (26-8)/2*1px solid $color-black;
                 }
-                @include mobile-or-small-tablet() {                 
+                @include mobile-or-small-tablet() { // mobile sizing
                     border:  (20-8)/2*1px solid $color-black;
                 }
             }
         }
     }
+/**
+ * <class> subscription_form_input-checkbox : used to format the checkboxes 
+ * used for terms of use and next event notification
+ * associated to each input fields.
+ * When checked the check font-awesome icon is diplayed in white on green, 
+ * otherwise it is grey on grey (invisible).
+ * 
+**/
     &_input-checkbox{
         appearance: none;
         &:checked + label > &_label_icon-check {
@@ -316,16 +469,16 @@
             font-weight: 400;
             display: inline-block;
             position: relative;
-            @include desktop-or-laptop-or-tablet() {
+            @include tablet-or-laptop-or-desktop() { // desktop sizing
                 margin-top: 0.2rem;
                 line-height: 2.6rem;
             }
-            @include mobile-or-small-tablet {
+            @include mobile-or-small-tablet { //mobile sizing
                 margin-top: 0.6rem;
                 line-height: 2rem;
             }
             &:hover {
-                cursor: pointer;
+                cursor: pointer; // to show interactivity of the field
             }
             &_icon-check {
                 display: inline-block;
@@ -334,13 +487,13 @@
                 border-radius: 6px;
                 background-color: $color-grey;
                 color: $color-grey;
-                @include desktop-or-laptop-or-tablet() {
+                @include tablet-or-laptop-or-desktop() { // desktop sizing
                     width: 2.6rem;
                     height: 2.6rem;
                     font-size: 1.4rem;
                     padding-left: (26-14)/2*1px;
                 }
-                @include mobile-or-small-tablet() {
+                @include mobile-or-small-tablet() { // mobile sizing
                     width: 2rem;
                     height: 2rem;
                     font-size: 1rem;
@@ -349,11 +502,20 @@
             }
         }
     }
+//──────────────────────────────────────────────────────────────────────────────
+/*
+ * <div> .subcription_form_submit 
+ * 
+ * It includes the submit button of the form. The click one the button 
+ * 
+ */
+//──────────────────────────────────────────────────────────────────────────────
     &_submit {
         display: flex;
         justify-content: center;
-        @include desktop-or-laptop-or-tablet() {
+        @include tablet-or-laptop-or-desktop() {
             margin-top: 1.6rem;
+            margin-bottom: 1.7rem;
         }
         @include mobile-or-small-tablet() {
             margin-top: 0.6rem;
@@ -367,7 +529,7 @@
                 color: $color-white;
                 border-radius: 0.8rem;
                 border:none;
-            @include desktop-or-laptop-or-tablet() {
+            @include tablet-or-laptop-or-desktop() {
                 padding: 11px 56px 11px 56px;
             }
             @include mobile-or-small-tablet() {
@@ -393,7 +555,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        @include desktop-or-laptop-or-tablet() {
+        @include tablet-or-laptop-or-desktop() {
             height: 74.6rem;
             display: flex;
             justify-content: center;
@@ -426,7 +588,7 @@
             color: $color-white;
             border-radius: 0.8rem;
             border:none;
-            @include desktop-or-laptop-or-tablet() {
+            @include tablet-or-laptop-or-desktop() {
                 padding: 11px 56px 11px 56px;
             }
             @include mobile-or-small-tablet() {

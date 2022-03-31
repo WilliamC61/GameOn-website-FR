@@ -1,8 +1,16 @@
 //==============================================================================
 /*                                                                            *
- *                                   header                                   *
- *  row flexbox including logo and nav                                        *
- *  geometry defined with % and vh to adjust full page fit on screen          *
+ * header                                                                     *
+ *                                                                            *
+ * It's arow flexbox including logo and nav                                   *
+ * The height is customized depending on the screen size and logo is sized    *
+ * accordingly.                                                               *
+ * For desktop, the logo and the one-line menu is aligned to the bottom of    *
+ * header, for the other screen sizes burger menu is displayed in an absolute *
+ * position.                                                                  *
+ * The nav menus is formatted using the 2 mixin on-line-menu and burger-menu. *
+ * Burger-menu has a retio parameter to size the menu depending on the screen *
+ * size.                                                                      * 
  *                                                                            */
 //==============================================================================
  
@@ -10,66 +18,63 @@
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    justify-content: space-between;
-    
+    justify-content: space-between; // put logo left side and menu right side 
+    align-items: flex-end; // logo and menu (or menu icon) aligned to the header bottom
     @include desktop() {
-        height: 10rem;
-        padding-top: 5rem;
-        align-items: flex-end;
+        height: $desktop-header-height;
+        align-items: flex-end; 
     }  
-    @include laptop() {
-        height: 10rem;
-        padding-top: 5rem;
-        position:relative;
+    @include mobile-or-small-tablet-or-tablet-or-laptop() {
+        position:relative; // to allow absolute position for the burger-menu
+    }
+    //──── header height depending on the sceen size ───────────────────────────
+    @include laptop() { 
+        height: $laptop-header-height;
     }
     @include tablet() {
-        height: 9rem;
-        padding-top: 4rem;
-        position:relative;
+        height: $tablet-header-height;
     }
     @include small-tablet() {
-        height: 8rem;
-        padding-top: 3rem;
-        position:relative;
+        height: $small-tablet-header-height;
     }
     @include mobile() {
-        height: 8rem;
-        padding-top: 3rem;
-        position:relative;
+        height: $mobile-header-height;
     } 
     &_logo {
+        //──── logo height depending on the sceen size ─────────────────────────
         @include desktop() {
-            height: 5rem;
+            height: $desktop-logo-height;
         }
         @include laptop() {
-            height: 5rem;
+            height: $laptop-logo-height;
         }
         @include tablet() {
-            height: 4rem;
+            height: $tablet-logo-height;
         }
         @include small-tablet() {
-            height: 3rem;
+            height: $small-tablet-logo-height;
         }
         @include mobile() {
-            height: 2rem;
+            height: $mobile-logo-height;
             position: relative;
         }    
     }
     &_top-nav {
+        //──── nav menu depending on the sceen size ─────────────────────────
         @include desktop() {
-            @include one-line-menu();
+            @include one-line-menu();  // desktop one-line menu is used
         }
         @include laptop() {
-            @include burger-menu(2.6);
+            @include burger-menu(2.6); // tablet menu is 2.6 times bigger
         }
         @include tablet() {
-            @include burger-menu(2);
+            @include burger-menu(2); // tablet menu is 2 times bigger
         }
         @include small-tablet() {
-            @include burger-menu(1.5);
+            @include burger-menu(1.5); // small tablet menu is 1.5 time bigger
         }
         @include mobile() {
-           @include burger-menu(1);
+           @include burger-menu(1); // mobile, menu ratio=1 (original design)
         }
     }
 }
