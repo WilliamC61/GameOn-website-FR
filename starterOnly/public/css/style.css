@@ -916,20 +916,24 @@ p {
  * <div> .subcription_form_input_location 
  * 
  * It includes all the elements necessary for the tournament location selection.
- * 6 radio buttons are use after inhibition of their default behavior. The
- * buttons cicles are created using :before and :after pseudo element borders of
- * the label. :before is position:relative to have :after position absolute for
- * centering of the 2 cirlces.
+ * 6 radio buttons are use after inhibition of their default behavior. For that
+ * display:none is used on the input field as appereance:none left a 16x16 
+ * pixels white space on IOS (iPad and iPhone).
+ * The buttons circles are created using :before and :after pseudo element 
+ * borders of the label. :before is position:relative to have :after position
+ * absolute to center of the 2 cirlces.
  * They are sized according to the 2 mockup. When unchecked only the outer 
  * circle is diplayed in grey, when check the 2 circles are displayed in green. 
  * 
  */
   /**
  * <class> subscription_form_input-checkbox : used to format the checkboxes 
- * used for terms of use and next event notification
- * associated to each input fields.
- * When checked the check font-awesome icon is diplayed in white on green, 
- * otherwise it is grey on grey (invisible).
+ * used for terms of use and next event notification fields.
+ * Default behavior is inhibited with display:none (appereance: none left
+ * some white space on iOS. The checkbox is recreated via the label including
+ * a fontawesome check icon: 
+ *   - When checked the fontawesome check icon is diplayed in white on green, 
+ *   - otherwise it is grey on grey (invisible).
  * 
 **/
   /*
@@ -1010,10 +1014,7 @@ p {
 }
 
 .subscription_form_input-radio {
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
-  padding: 0;
+  display: none;
 }
 
 .subscription_form_input-radio:checked + label:before,
@@ -1099,10 +1100,7 @@ p {
 }
 
 .subscription_form_input-checkbox {
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
-  padding: 0;
+  display: none;
 }
 
 .subscription_form_input-checkbox:checked + label > .subscription_form_input-checkbox_label_icon-check {
