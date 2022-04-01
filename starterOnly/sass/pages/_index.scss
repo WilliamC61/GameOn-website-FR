@@ -383,12 +383,13 @@
  * 
  */
 //──────────────────────────────────────────────────────────────────────────────
-    &_input-location{
+    &_input-location {
         margin-top: 0.8rem;
         margin-left: 0; margin-right:0;
     }
-    &_input-radio{
+    &_input-radio {
         appearance: none; // to inhibate default beavior/appearence
+        padding: 0; // to overide default padding seen on ios
         &:checked + label:before,
         &:checked + label:after {
             border-color: $color-green; // check => 2 green circles displayed 
@@ -459,6 +460,7 @@
 **/
     &_input-checkbox{
         appearance: none;
+        padding: 0; // to overide default padding seen on iOS
         &:checked + label > &_label_icon-check {
             background-color: $color-green; 
             color: $color-white;

@@ -1013,6 +1013,7 @@ p {
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
+  padding: 0;
 }
 
 .subscription_form_input-radio:checked + label:before,
@@ -1101,6 +1102,7 @@ p {
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
+  padding: 0;
 }
 
 .subscription_form_input-checkbox:checked + label > .subscription_form_input-checkbox_label_icon-check {
