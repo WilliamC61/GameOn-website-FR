@@ -289,7 +289,6 @@ p {
   }
   .header_top-nav_ul {
     list-style: none;
-    padding: 0;
   }
   .header_top-nav_ul_li {
     display: block;
@@ -338,7 +337,6 @@ p {
   }
   .header_top-nav_ul {
     list-style: none;
-    padding: 0;
   }
   .header_top-nav_ul_li {
     display: block;
@@ -387,7 +385,6 @@ p {
   }
   .header_top-nav_ul {
     list-style: none;
-    padding: 0;
   }
   .header_top-nav_ul_li {
     display: block;
@@ -436,7 +433,6 @@ p {
   }
   .header_top-nav_ul {
     list-style: none;
-    padding: 0;
   }
   .header_top-nav_ul_li {
     display: block;
@@ -1180,7 +1176,7 @@ p {
 @media screen and (max-width: 767px) {
   .subscription_form_submit {
     margin-top: 0.6rem;
-    margin-bottom: 2.2rem;
+    margin-bottom: 2.1rem;
   }
 }
 
@@ -1274,13 +1270,13 @@ p {
 
 @media screen and (min-width: 768px) {
   .modal_confirmation_content {
-    height: 74.6rem;
+    height: 73.7rem;
   }
 }
 
 @media screen and (max-width: 767px) {
   .modal_confirmation_content {
-    height: 56rem;
+    height: 57.2rem;
   }
 }
 
@@ -1307,7 +1303,7 @@ p {
 
 @media screen and (min-width: 768px) {
   .modal_confirmation_close {
-    margin-bottom: 1.8rem;
+    margin-bottom: 1.7rem;
   }
 }
 

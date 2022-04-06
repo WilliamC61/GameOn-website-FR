@@ -91,7 +91,7 @@
     }
     &_ul {
         list-style: none;
-        padding:0; // otherwise a 20px left padding is seen
+        //padding:0; // otherwise a 20px left padding is seen
         &_li {
             display: block; // display block to have one column display
             &_a {

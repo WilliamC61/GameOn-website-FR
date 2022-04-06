@@ -526,7 +526,7 @@
         }
         @include mobile-or-small-tablet() { // mobile sizing
             margin-top: 0.6rem;
-            margin-bottom: 2.2rem;
+            margin-bottom: 2.1rem;
         }
         &_button {
             font-size: 1.4rem;
@@ -586,10 +586,10 @@
         justify-content: center;
         align-items: center;
         @include tablet-or-laptop-or-desktop() {
-            height: 74.6rem;
+            height: 73.7rem;
         }
         @include mobile-or-small-tablet() {
-            height: 56rem;
+            height: 57.2rem;
         }
 /**
  * <class> .modal_subscription_content_message :  used to format the
@@ -621,7 +621,7 @@
         display: flex;
         justify-content: center;
         @include tablet-or-laptop-or-desktop() {
-            margin-bottom: 1.8rem;
+            margin-bottom: 1.7rem;
         }
         @include mobile-or-small-tablet() {
             margin-bottom: 2.1rem;
